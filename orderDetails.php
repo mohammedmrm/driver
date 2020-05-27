@@ -81,11 +81,11 @@ background-color:#666666;
    padding-left:15px;
    padding-right:15px;
    min-width:10px;
-   max-width:80%;
+   max-width:100%;
    font-size: 16px;
    color:#000000;
    margin:0 !important;
-   display: inline-block;
+   display: block;
  }
 .name {
   position: relative;
