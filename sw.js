@@ -1,20 +1,9 @@
-/**
- * Welcome to your Workbox-powered service worker!
- *
- * You'll need to register this file in your web app and you should
- * disable HTTP caching for this file too.
- * See https://goo.gl/nhQhGp
- *
- * The rest of the code is auto-generated. Please don't update this file
- * directly; instead, make changes to your Workbox build configuration
- * and re-run your build process.
- * See https://goo.gl/2aRDsh
- */
+importScripts(
+  "https://storage.googleapis.com/workbox-cdn/releases/4.3.1/workbox-sw.js"
+);
 
-importScripts("https://storage.googleapis.com/workbox-cdn/releases/4.3.1/workbox-sw.js");
-
-self.addEventListener('message', (event) => {
-  if (event.data && event.data.type === 'SKIP_WAITING') {
+self.addEventListener("message", (event) => {
+  if (event.data && event.data.type === "SKIP_WAITING") {
     self.skipWaiting();
   }
 });
@@ -25,51 +14,18 @@ workbox.routing.registerRoute(
   // Use cache but update in the background.
   new workbox.strategies.StaleWhileRevalidate({
     // Use a custom cache name.
-    cacheName: 'js-cache',
-    plugins: [
-      new workbox.expiration.Plugin({
-        // Cache only 20 images.
-        maxEntries: 20,
-        // Cache for a maximum of a week.
-        maxAgeSeconds: 7 * 24 * 60 * 60,
-      })
-    ],
+    cacheName: "js-cache-client",
   })
 );
-workbox.routing.registerRoute(
-  // Cache js files.
-  /\.woff2/,
-  // Use cache but update in the background.
-  new workbox.strategies.StaleWhileRevalidate({
-    // Use a custom cache name.
-    cacheName: 'woff2-cache',
-    plugins: [
-      new workbox.expiration.Plugin({
-        // Cache only 20 images.
-        maxEntries: 20,
-        // Cache for a maximum of a week.
-        maxAgeSeconds: 7 * 24 * 60 * 60,
-      })
-    ],
-  })
-);
-workbox.routing.registerRoute(
+/*workbox.routing.registerRoute(
   // Cache js files.
   /\.php/,
   // Use cache but update in the background.
   new workbox.strategies.StaleWhileRevalidate({
     // Use a custom cache name.
-    cacheName: 'php-cache',
-    plugins: [
-      new workbox.expiration.Plugin({
-        // Cache only 20 images.
-        maxEntries: 20,
-        // Cache for a maximum of a week.
-        maxAgeSeconds: 7 * 24 * 60 * 60,
-      })
-    ],
+    cacheName: "php-cache-client",
   })
-);
+);*/
 
 workbox.routing.registerRoute(
   // Cache CSS files.
@@ -77,31 +33,24 @@ workbox.routing.registerRoute(
   // Use cache but update in the background.
   new workbox.strategies.StaleWhileRevalidate({
     // Use a custom cache name.
-    cacheName: 'css-cache',
-        plugins: [
-      new workbox.expiration.Plugin({
-        // Cache only 20 images.
-        maxEntries: 20,
-        // Cache for a maximum of a week.
-        maxAgeSeconds: 7 * 24 * 60 * 60,
-      })
-    ],
+    cacheName: "css-cache-client",
   })
 );
+
 workbox.routing.registerRoute(
   // Cache image files.
   /\.(?:png|jpg|jpeg|svg|gif)$/,
   // Use the cache if it's available.
   new workbox.strategies.StaleWhileRevalidate({
     // Use a custom cache name.
-    cacheName: 'image-cache',
+    cacheName: "image-cache-client",
     plugins: [
       new workbox.expiration.Plugin({
         // Cache only 20 images.
         maxEntries: 20,
         // Cache for a maximum of a week.
         maxAgeSeconds: 7 * 24 * 60 * 60,
-      })
+      }),
     ],
   })
 );
@@ -476,7 +425,7 @@ self.__precacheManifest = [
     "url": "header.php",
     "revision": "3dbbc8b662e7aa9aef8a6e5c80deb60a"
   },
-  {
+  /*{
     "url": "images/2.png",
     "revision": "2cae2f2aed22919650bd8850be15fc4f"
   },
@@ -484,18 +433,8 @@ self.__precacheManifest = [
     "url": "images/ath.png",
     "revision": "00c888ee2bbc4632b82b8adf150b38b9"
   },
-  {
-    "url": "images/careers/1.png",
-    "revision": "415004cbe6d718935f7d9de4fbe82a52"
-  },
-  {
-    "url": "images/careers/2.png",
-    "revision": "094367a57750a8841abf8a72a1bdf602"
-  },
-  {
-    "url": "images/careers/3.png",
-    "revision": "794b18881048ab2b133a85f08b1eb504"
-  },
+
+
   {
     "url": "images/careers/4.png",
     "revision": "a89057ef7aac2ceb4047629a1d307b03"
@@ -659,7 +598,7 @@ self.__precacheManifest = [
   {
     "url": "images/icons/license.txt",
     "revision": "49de36be4e05d61d60317f2fcfb341e8"
-  },
+  },*/
 //  {
 //    "url": "images/pictures_vertical/bg-perspective.png",
 //    "revision": "ab2f1a594908bccc8875f04e9893a8e2"
@@ -1884,7 +1823,7 @@ self.__precacheManifest = [
 //    "url": "images/products/walk4.png",
 //    "revision": "b43a3e5cb5e07cf30689ca1aa09a60f3"
 //  },
-  {
+/*  {
     "url": "images/splash/android-chrome-192x192.png",
     "revision": "eec304dd1cc2ef5bb0a929fae1f7b407"
   },
@@ -1947,7 +1886,7 @@ self.__precacheManifest = [
   {
     "url": "images/splash/Thumbs.db",
     "revision": "05749e40221c54dca2e97c37469c1235"
-  },
+  },*/
   {
     "url": "index.php",
     "revision": "612bef9e508383a2330ed5eaa97ef885"
@@ -1981,86 +1920,6 @@ self.__precacheManifest = [
     "revision": "6ae5c0005ad3ed9cdf9e3803c59f5b68"
   },
   {
-    "url": "php/_access.php",
-    "revision": "642a2c7b7d8d668cb6e6b2c3fbac84ca"
-  },
-//  {
-//    "url": "php/_charts.php",
-//    "revision": "2206bf3824185b9cccc4b3cd7887af24"
-//  },
-  {
-    "url": "php/_crpt.php",
-    "revision": "f510024dacaf0a557315d5991fdc1d2f"
-  },
-//  {
-//    "url": "php/_earnings.php",
-//    "revision": "bb542bddfebb6ef812d892e1aa0d2da8"
-//  },
-//  {
-//    "url": "php/_getOrder.php",
-//    "revision": "0a0162249822ee02a04d48c69d27c637"
-//  },
-//  {
-//    "url": "php/_getOrders.php",
-//    "revision": "1a77f5b7a263eb85aa249b09b0504823"
-//  },
-//  {
-//    "url": "php/_getOrderTrack.php",
-//    "revision": "01d04b330128e1b1500ef654f12da7ce"
-//  },
-//  {
-//    "url": "php/_getPospondedOrders.php",
-//    "revision": "30cbd9517f2dd2de691dc8fbba3666ab"
-//  },
-//  {
-//    "url": "php/_getProfile.php",
-//    "revision": "863951c0c5247a5a4ee9c3cc63602d52"
-//  },
-//  {
-//    "url": "php/_getReturnedOrders.php",
-//    "revision": "c61010c7ba177b5b5bc943a53246331b"
-//  },
-//  {
-//    "url": "php/_login.php",
-//    "revision": "01a35c71bdaad7214775c800f83d7619"
-//  },
-//  {
-//    "url": "php/_logout.php",
-//    "revision": "84f6df22f5b466efa21c45e87075296f"
-//  },
-//  {
-//    "url": "php/_orderChange.php",
-//    "revision": "270a078c116af79c5dcd784976125e28"
-//  },
-//  {
-//    "url": "php/_orderPosponded.php",
-//    "revision": "88707993e5c7f09811b22baa2000b3b4"
-//  },
-//  {
-//    "url": "php/_orderRecived.php",
-//    "revision": "c2499703ae96a19d9fe642983304bd4e"
-//  },
-//  {
-//    "url": "php/_orderRepalce.php",
-//    "revision": "8c7c0526a75b6ff85d6b5364ef1777f0"
-//  },
-//  {
-//    "url": "php/_orderReturned.php",
-//    "revision": "e7058924739de728365f6bff384e59cd"
-//  },
-//  {
-//    "url": "php/_updateProfile.php",
-//    "revision": "d0c07513b98c77d221f6954fa2c44838"
-//  },
-  {
-    "url": "php/contact.php",
-    "revision": "a27142543526be39fec40bcdc5f169fa"
-  },
-  {
-    "url": "php/dbconnection.php",
-    "revision": "1744d69636dd45ec92a143089f5ee17c"
-  },
-  {
     "url": "posponded.php",
     "revision": "0d49c3174093077c80d172e80456521d"
   },
@@ -2083,10 +1942,6 @@ self.__precacheManifest = [
   {
     "url": "pwa/browserconfig.xml",
     "revision": "61bfd064535af0c276bb63b3fd579733"
-  },
-  {
-    "url": "pwa/favicon_package_v0.161.zip",
-    "revision": "3b19636175ddf67669efe28521d2b8b3"
   },
   {
     "url": "pwa/favicon-16x16.png",

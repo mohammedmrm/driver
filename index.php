@@ -70,19 +70,10 @@ require_once("config.php");
 
 </style>
 <script type="text/javascript" src="scripts/jquery.js"></script>
-
 <div id="page">
 
-    <div id="page-preloader">
-        <div class="loader-main"><div class="preload-spinner border-highlight"></div></div>
-    </div>
-
-	<div class="header header-fixed header-logo-center">
-        <a href="index.php" class="header-title"> شركة النهر</a>
-		<a href="#" class="back-button header-icon header-icon-1"><i class="fas fa-arrow-left"></i></a>
-		<a href="logout.php" data-toggle-theme-switch class="header-icon header-icon-4">خروج</a>
-	</div>
-
+<?php include_once("pre.php");  ?>
+<?php include_once("top-menu.php");  ?>
 <?php include_once("footer-menu.php");  ?>
 
     <div class="page-content header-clear-medium">
@@ -231,6 +222,14 @@ static();
   <script src="https://www.gstatic.com/firebasejs/7.12.0/firebase-auth.js"></script>
   <script src="https://www.gstatic.com/firebasejs/7.12.0/firebase-firestore.js"></script>
   <script>
+  // Check that service workers are supported
+  if ('serviceWorker' in navigator) {
+     window.addEventListener('load', () => {
+      navigator.serviceWorker.register('sw.js')
+    });
+  }
+  </script>
+  <script>
     // Your web app's Firebase configuration
     var firebaseConfig = {
       apiKey: "AIzaSyCmIr87Ihp8nXtHrKWZyeH1GcvFrHxmtJw",
@@ -264,7 +263,8 @@ static();
           });
           messaging.onMessage(function(payload) {
             console.log('On message', payload);
-            Toast.success(payload.notification.title,payload.notification.body);
+            Toast.success(payload.notification.body,payload.notification.title);
+            getNotification();
           });
         });
     }else{
@@ -273,18 +273,18 @@ static();
       });
     }
     function updateUserToken(token){
-     $.ajax({
-           url:"php/_updateToken.php",
-           data:{token : token},
-           type:"POST",
-           success:function(res){
-            console.log(res);
-           },
-           error:function(e){
-             console.log(e);
-           },
-     });
-}
+         $.ajax({
+               url:"script/_updateToken.php",
+               data:{token : token},
+               type:"POST",
+               success:function(res){
+                console.log(res);
+               },
+               error:function(e){
+                 console.log(e);
+               },
+         });
+    }
 </script>
 </body>
 </html>

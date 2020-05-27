@@ -140,17 +140,10 @@ background-color:#666666;
 
 <div id="page">
 
-    <!-- load main header and footer -->
-    <div id="page-preloader">
-        <div class="loader-main"><div class="preload-spinner border-highlight"></div></div>
-    </div>
 
-	<div class="header header-fixed header-logo-center">
-        <a href="index.php" class="header-title"> شركة النهر</a>
-		<a href="index.php" class="back-button header-icon header-icon-1"><i class="fas fa-arrow-left"></i></a>
-		<a href="logout.php" data-toggle-theme-switch class="header-icon header-icon-4">خروج</a>
-	</div>
 
+   <?php include_once("pre.php");  ?>
+   <?php include_once("top-menu.php");  ?>
    <?php include_once("footer-menu.php");  ?>
 
     <div class="page-content header-clear-medium">
