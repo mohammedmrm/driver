@@ -26,7 +26,7 @@ require_once("config.php");
 <link rel="stylesheet" type="text/css" href="styles/bootstrap.min.css">
 <link rel="stylesheet" type="text/css" href="fonts/css/fontawesome-all.min.css">
 <link rel="stylesheet" type="text/css" href="styles/datapicker.css">
-
+<link rel="manifest" href="pwa/site.webmanifest"> 
 <!-- load header -->
 <style type="text/css">
  #search{

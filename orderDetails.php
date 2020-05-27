@@ -15,6 +15,7 @@ include("config.php");
 <link rel="stylesheet" type="text/css" href="styles/framework.css">
 <link rel="stylesheet" type="text/css" href="styles/bootstrap.min.css">
 <link rel="stylesheet" type="text/css" href="fonts/css/fontawesome-all.min.css">
+<link rel="manifest" href="pwa/site.webmanifest">
 <!-- load header -->
 <style>
 .link {

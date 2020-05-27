@@ -22,7 +22,7 @@ require_once("config.php");
 <link rel="stylesheet" type="text/css" href="styles/bootstrap.min.css">
 <link rel="stylesheet" type="text/css" href="fonts/css/fontawesome-all.min.css">
 <link rel="stylesheet" type="text/css" href="styles/toast.css">
-<!--<link rel="manifest" href="manifest.json"> -->
+<link rel="manifest" href="pwa/site.webmanifest"> 
 
 </head>
 
@@ -72,10 +72,9 @@ require_once("config.php");
 <script type="text/javascript" src="scripts/jquery.js"></script>
 <div id="page">
 
-<?php include_once("pre.php");  ?>
-<?php include_once("top-menu.php");  ?>
-<?php include_once("bottom-menu.php");  ?>
-
+   <?php include_once("pre.php");  ?>
+   <?php include_once("top-menu.php");  ?>
+   <?php include_once("bottom-menu.php");  ?>
     <div class="page-content header-clear-medium">
         <div class="content-boxed">
         <div class="content caption  bottom-20">
