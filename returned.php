@@ -24,7 +24,6 @@ require_once("config.php");
 <link rel="stylesheet" type="text/css" href="styles/bootstrap.min.css">
 <link rel="stylesheet" type="text/css" href="fonts/css/fontawesome-all.min.css">
 <link rel="stylesheet" type="text/css" href="styles/datapicker.css">
-<link rel="manifest" href="pwa/site.webmanifest">
 
 <!-- load header -->
 <style type="text/css">
@@ -60,17 +59,9 @@ require_once("config.php");
 <div id="page">
 
     <!-- load main header and footer -->
-    <div id="page-preloader">
-        <div class="loader-main"><div class="preload-spinner border-highlight"></div></div>
-    </div>
-
-	<div class="header header-fixed header-logo-center">
-        <a href="index.php" class="header-title"> شركة النهر</a>
-		<a href="index.php" aria-label="back" class="back-button header-icon header-icon-1"><i class="fas fa-arrow-left"></i></a>
-		<a href="logout.php" data-toggle-theme-switch class="header-icon header-icon-4">خروج</a>
-	</div>
-
-    <?php include_once("footer-menu.php");  ?>
+   <?php include_once("pre.php");  ?>
+   <?php include_once("top-menu.php");  ?>
+   <?php include_once("bottom-menu.php");  ?>
     <div class="page-content header-clear-medium">
 
          <div class="content">

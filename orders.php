@@ -24,7 +24,6 @@ require_once("config.php");
 <link rel="stylesheet" type="text/css" href="styles/bootstrap.min.css">
 <link rel="stylesheet" type="text/css" href="fonts/css/fontawesome-all.min.css">
 <link rel="stylesheet" type="text/css" href="styles/datapicker.css">
-<link rel="manifest" href="pwa/site.webmanifest">
 
 
 <!-- load header -->
@@ -66,7 +65,7 @@ require_once("config.php");
     <!-- load main header and footer -->
    <?php include_once("pre.php");  ?>
    <?php include_once("top-menu.php");  ?>
-   <?php include_once("footer-menu.php");  ?>
+   <?php include_once("bottom-menu.php");  ?>
 
 
     <div class="page-content header-clear-medium">

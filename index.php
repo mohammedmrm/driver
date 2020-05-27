@@ -74,7 +74,7 @@ require_once("config.php");
 
 <?php include_once("pre.php");  ?>
 <?php include_once("top-menu.php");  ?>
-<?php include_once("footer-menu.php");  ?>
+<?php include_once("bottom-menu.php");  ?>
 
     <div class="page-content header-clear-medium">
         <div class="content-boxed">
@@ -274,7 +274,7 @@ static();
     }
     function updateUserToken(token){
          $.ajax({
-               url:"script/_updateToken.php",
+               url:"php/_updateToken.php",
                data:{token : token},
                type:"POST",
                success:function(res){

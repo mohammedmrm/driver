@@ -144,7 +144,7 @@ background-color:#666666;
 
    <?php include_once("pre.php");  ?>
    <?php include_once("top-menu.php");  ?>
-   <?php include_once("footer-menu.php");  ?>
+   <?php include_once("bottom-menu.php");  ?>
 
     <div class="page-content header-clear-medium">
          <input type="hidden" id="order_id" value="<?php echo $_GET['o']?>">
