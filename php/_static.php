@@ -17,18 +17,18 @@ $sql = "SELECT
           SUM(IF (order_status_id = '7',1,0)) as  posponded
           FROM orders
           where update_date between '".$start."' and '".$end."'
-          and driver_id='".$_SESSION['userid']."'";
+          and driver_id='".$_SESSION['userid']."' and confirm=1";
 $result = getData($con,$sql);
 $sql = "SELECT
           count(*) as  today
           FROM orders
           where date between '".$start."' and '".$end."'
-          and driver_id='".$_SESSION['userid']."'";
+          and driver_id='".$_SESSION['userid']."' and confirm=1";
 $res = getData($con,$sql);
 $sql = "SELECT
           SUM(IF(order_status_id = '3' or order_status_id = '2' or order_status_id = '1',1,0)) as  waiting
           FROM orders
-          where driver_id='".$_SESSION['userid']."'";
+          where driver_id='".$_SESSION['userid']."' and confirm=1";
 $res3 = getData($con,$sql);
 echo (json_encode(array("data"=>$result,"today"=>$res[0]['today'],'waiting'=>$res3[0]['waiting'])));
 ?>

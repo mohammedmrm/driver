@@ -35,7 +35,7 @@ try{
             left join branches on  branches.id = orders.to_branch
             ";
   $where = "where";
-  $filter = "driver_id =".$_SESSION['userid']." ";
+  $filter = "driver_id =".$_SESSION['userid']."  and confirm=1 ";
   if(!empty($search)){
    $filter .= " and (order_no like '%".$search."%'
                     or customer_name like '%".$search."%'
@@ -55,7 +55,7 @@ try{
     $filter = preg_replace('/^ and/', '', $filter);
     $filter = $where." ".$filter;
     $count .= " ".$filter;
-    $query .= " ".$filter;
+    $query .= " ".$filter." order by date DESC";
   }
   if($page != 0){
     $page = $page - 1;

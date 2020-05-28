@@ -57,7 +57,7 @@ if(empty($start)) {
             left JOIN client_dev_price
             on client_dev_price.client_id = orders.client_id AND client_dev_price.city_id = orders.to_city
             where date between "'.$start.'" and "'.$end.'"
-            and orders.driver_id ="'.$_SESSION['userid'].'"';
+            and orders.driver_id ="'.$_SESSION['userid'].'"   and orders.confirm=1';
 
 
 $sql1 = $sql."  GROUP BY DATE_FORMAT(date,'%Y-%m-%d')";

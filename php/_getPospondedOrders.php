@@ -18,11 +18,11 @@ if(empty($page)){
  $page = 1;
 }
 if(empty($end)) {
-  $end = date('Y-m-d h:i:s', strtotime($end. ' + 1 day'));
-}else{
-   $end .=" 23:59:59";
+  $end = date('Y-m-d', strtotime($end. ' + 1 day'));
 }
-$start .=" 00:00:00";
+if(empty($start)){
+  $start = date('Y-m-d',strtotime(' - 1 day'));
+}
 try{
   $count = "select count(*) as count from orders";
   $query = "select orders.*,
@@ -35,7 +35,7 @@ try{
             left join branches on  branches.id = orders.to_branch
             ";
   $where = "where";
-  $filter = "driver_id =".$_SESSION['userid']." and order_status_id=7 ";
+  $filter = "driver_id =".$_SESSION['userid']." and order_status_id=7   and confirm=1";
   if(!empty($search)){
    $filter .= " and (order_no like '%".$search."%'
                     or customer_name like '%".$search."%'
@@ -83,5 +83,5 @@ if($success == '1'){
     }
   }
 }
-print_r(json_encode(array($_POST,"success"=>$success,"data"=>$data,'pages'=>$pages,'nextPage'=>$page+2)));
+echo (json_encode(array($_POST,"success"=>$success,"data"=>$data,'pages'=>$pages,'nextPage'=>$page+2)));
 ?>
