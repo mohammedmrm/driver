@@ -84,7 +84,7 @@ require_once("config.php");
               </div>
               <div  class="one-half last last-column waiting">
                      <span class="text-center font-22">قيد الانتظار</span>
-                     <span class="text-center font-22" id="wating">0</span>
+                     <span class="text-center font-22" id="waiting">0</span>
               </div>
               <div  class="one-third last returned">
                      <span class="text-center font-22" id="returned">0</span>
