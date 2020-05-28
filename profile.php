@@ -43,22 +43,15 @@
 <script type="text/javascript" src="scripts/jquery.js"></script>
 <div id="page">
 
-    <div id="page-preloader">
-        <div class="loader-main"><div class="preload-spinner border-highlight"></div></div>
-    </div>
+   <?php include_once("pre.php");  ?>
+   <?php include_once("top-menu.php");  ?>
+   <?php include_once("bottom-menu.php");  ?>
 
-	<div class="header header-fixed header-logo-center">
-        <a href="index.php" class="header-title"> شركة النهر</a>
-		<a href="index.php" class="back-button header-icon header-icon-1" aria-label="back"><i class="fas fa-arrow-left"></i></a>
-		<a href="logout.php" data-toggle-theme-switch class="header-icon header-icon-4">خروج</a>
-	</div>
-
-    <?php include_once("footer-menu.php");  ?>
 
     <div class="page-content header-clear-medium">
         <div data-height="200" class="caption shadow-large caption-margins top-30 round-medium shadow-huge">
             <div class="caption-top top-30">
-                <h1 id="head-name" class="center-text color-white bolder fa-4x">الاسم</h1>
+                <h5 id="head-name" class="center-text color-white bolder fa-2x">الاسم</h5>
             </div>
             <div class="caption-overlay bg-black opacity-80"></div>
             <div class="caption-bg bg-14"></div>
@@ -66,26 +59,26 @@
 
         <div class="content-boxed" >
             <div class="content">
-            <form id="profileForm">
-                <h1 class="color-highlight bold">معلومات العميل</h1>
+            <form id="profileForm" autcomplete="off">
+                <h1 class="color-highlight bold text-right">معلومات العميل</h1>
                 <div class="content-box">
                   <span class="text-right">الاسم</span>
-                  <input id="name" name="name" aria-label="name" class="form-control" type="name"/>
+                  <input autcomplete="no1" id="name" name="name" aria-label="name" class="form-control" type="name"/>
                   <span class="text-right text-danger" id="name_err"></span>
                  </div>
                 <div class="content-box">
                   <span class="text-right">رقم الهاتف</span>
-                  <input id="phone" aria-label="phone" name="phone" class="form-control"  type="phone"/>
+                  <input autcomplete="no2" id="phone" aria-label="phone" name="phone" class="form-control"  type="phone"/>
                   <span class="text-right text-danger" id="phone_err"></span>
                 </div>
                 <div class="content-box">
                   <span class="text-right">البريد الالكتروني</span>
-                  <input id="email" name="email" aria-label="email" class="form-control"  type="email"/>
+                  <input autocomplete="new-password" id="text" name="email" aria-label="email" class="form-control"  type="text"/>
                   <span class="text-right text-danger" id="email_err"></span>
                 </div>
                 <div class="content-box">
                     <span class="text-right">كلمة السر</span>
-                    <input id="password" name="password" aria-label="password" class="form-control"  type="password" />
+                    <input autocomplete="new-password" id="password" name="password" aria-label="password" class="form-control"  type="password" />
                     <span class="text-right text-danger" id="password_err"></span>
                 </div>
                 <div class="content-box">
