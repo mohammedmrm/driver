@@ -161,7 +161,7 @@ background-color:#666666;
               </div>
            </div>
            <div class="one-half last-column">
-              <div  class="bottom-5 color-white font-20 link-list link-list-1 bg-red1-light rounded">
+              <div  class="bottom-5 color-white font-20 link-list link-list-1 bg-brown1-dark rounded">
                 <a href="#" data-menu="returned" class="link">
                 <span class="text-center color-white left-0 right-0 top-10 bottom-10">راجع جزئي</span>
                 </a>
@@ -191,7 +191,7 @@ background-color:#666666;
               </div>
            </div>
            <div class="one-half last-column">
-              <div class="bottom-5 color-white font-20 link-list link-list-1 bg-brown1-dark rounded">
+              <div class="bottom-5 color-white font-20 link-list link-list-1 bg-red1-dark rounded">
                 <a href="#" data-menu="fake"  class="link">
                 <span class="text-center color-white left-0 right-0 top-10 bottom-10">راجع كلي</span>
                 </a>
@@ -235,7 +235,7 @@ background-color:#666666;
      data-menu-height="550"
      data-menu-effect="menu-over">
      <div class="content">
-            <h2 class="uppercase ultrabold text-center top-20 text-danger">ارجاع الطلبية ؟</h2>
+            <h2 class="uppercase ultrabold text-center top-20 text-danger">راجع جزئي</h2>
             <p class="font-11 under-heading text-center bottom-20">يجب ادخال السعر المستلم</p>
             <p class="font-16 under-heading text-center bottom-20 text-danger" id="err_msg_returned1"></p>
             <p class="font-16 under-heading text-center bottom-20 text-danger" id="err_msg_returned2"></p>
@@ -252,7 +252,7 @@ background-color:#666666;
                     <span class="input-style-1-inactive">ملاحظات</span>
                     <textarea id="note_r" name="note_r" placeholder="ملاحظات"></textarea>
             </div>
-            <button onclick="returned()" class="button bg-red1-dark button-full button-m shadow-large button-round-small bg-highlight top-20">تحديث حالة الطلب</button>
+            <button onclick="returned()" class="button bg-brown1-dark button-full button-m shadow-large button-round-small bg-highlight top-20">تحديث حالة الطلب</button>
 
      </div>
 </div>
@@ -320,7 +320,7 @@ background-color:#666666;
      data-menu-height="300"
      data-menu-effect="menu-over">
      <div class="content">
-            <h2 class="uppercase ultrabold text-center top-20 color-brown1-dark">زبون وهمي؟</h2>
+            <h2 class="uppercase ultrabold text-center top-20 color-red1-dark">راجع كلي</h2>
             <p class="font-11 under-heading text-center bottom-20">يجب ذكر السبب</p>
             <p class="font-16 under-heading text-center bottom-20 text-danger" id="err_msg_fake"></p>
             <div class="input-style input-style-1 input-required">
@@ -328,7 +328,7 @@ background-color:#666666;
                     <textarea id="note_fake" name="note_fake" placeholder="السبب"></textarea>
 
             </div>
-            <button onclick="fake()" class="button bg-brown1-dark button-full button-m shadow-large button-round-small bg-highlight top-20">تحديث حالة الطلب</button>
+            <button onclick="fake()" class="button bg-red1-dark button-full button-m shadow-large button-round-small bg-highlight top-20">تحديث حالة الطلب</button>
 
      </div>
 </div>

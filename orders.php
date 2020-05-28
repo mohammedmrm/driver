@@ -24,7 +24,7 @@ require_once("config.php");
 <link rel="stylesheet" type="text/css" href="styles/bootstrap.min.css">
 <link rel="stylesheet" type="text/css" href="fonts/css/fontawesome-all.min.css">
 <link rel="stylesheet" type="text/css" href="styles/datapicker.css">
-<link rel="manifest" href="pwa/site.webmanifest"> 
+<link rel="manifest" href="pwa/site.webmanifest">
 
 <!-- load header -->
 <style type="text/css">
@@ -182,8 +182,10 @@ $.ajax({
 
    console.log(res);
    $.each(res.data,function(){
-     if(this.order_status_id == 6){
+     if(this.order_status_id == 9){
        color = 'bg-red1-dark';
+     }if(this.order_status_id == 6){
+       color = 'bg-brown1-dark';
      }else if(this.order_status_id == 4){
         color = 'bg-green1-dark';
      }else if(this.order_status_id == 5){

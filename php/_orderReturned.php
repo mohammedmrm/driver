@@ -60,6 +60,8 @@ if($v->passes()) {
     $res =getData($con,$sql,[$order_id]);
     sendNotification([$res[0]['s_token'],$res[1]['s_token'],$res[0]['c_token']],[$order_id],'طلب رقم - '.$order_id,"ارجاع الطلب - ".$note,"../orderDetails.php?o=".$order_id);
 
+   }else{
+     $error['note'] = "لايمكن تحديث الحالة";
    }
 
 
