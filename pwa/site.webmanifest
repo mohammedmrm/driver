@@ -1,7 +1,7 @@
 {
     "name": "تطبيق المندوب",
     "short_name": "تطبيق المندوب",
-    "start_url": "/driver/",   
+    "start_url": "/driver/",
  "icons": [
         {
             "src": "/driver/pwa/android-chrome-192x192.png",
