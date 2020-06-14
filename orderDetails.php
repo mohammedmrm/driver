@@ -325,7 +325,25 @@ background-color:#666666;
             <p class="font-16 under-heading text-center bottom-20 text-danger" id="err_msg_fake"></p>
             <div class="input-style input-style-1 input-required">
                     <span class="input-style-1-inactive">السبب</span>
-                    <textarea id="note_fake" name="note_fake" placeholder="السبب"></textarea>
+                    <select name="note_fake" id="note_fake" class="form-control">
+                     <option value="">-- السبب --</option>
+                     <option value="لايرد">لايرد</option>
+                     <option value="لايرد مع رسالة">لايرد مع رسالة</option>
+                     <option value="تم اغلاق الهاتف">تم اغلاق الهاتف</option>
+                     <option value="رفض الطلب">رفض الطلب</option>
+                     <option value="مكرر">مكرر</option>
+                     <option value="رفض الطلب">رفض الطلب</option>
+                     <option value="لايرد بعد التاجيل">لايرد بعد التاجيل</option>
+                     <option value="مسافر">مسافر</option>
+                     <option value="لايمكن الاتصال به">لايمكن الاتصال به</option>
+                     <option value="مغلق بعد الاتفاق">مغلق بعد الاتفاق</option>
+                     <option value="مستلم سابقا">مستلم سابقا</option>
+                     <option value="خطأ بالعنوان">خطأ بالعنوان</option>
+                     <option value="مستلم سابقا">مستلم سابقا</option>
+                     <option value="خطأ بالتجهيز">خطأ بالتجهيز</option>
+                     <option value="نقص رقم">نقص رقم</option>
+                     <option value="زيادة رقم">زيادة رقم</option>
+                    </select>
 
             </div>
             <button onclick="fake()" class="button bg-red1-dark button-full button-m shadow-large button-round-small bg-highlight top-20">تحديث حالة الطلب</button>
@@ -405,7 +423,9 @@ $.ajax({
          '</tbody>'+
         '</table>'
        );
+
        $("#order_price").val(this.price);
+       $("#new_price").val(this.price);
      });
    }else{
        $("#order-details").append(

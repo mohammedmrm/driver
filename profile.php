@@ -54,7 +54,7 @@
                 <h5 id="head-name" class="center-text color-white bolder fa-2x">الاسم</h5>
             </div>
             <div class="caption-overlay bg-black opacity-80"></div>
-            <div class="caption-bg bg-14"></div>
+            <div class="caption-bg"></div>
         </div>
 
         <div class="content-boxed" >
