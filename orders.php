@@ -53,6 +53,14 @@ require_once("config.php");
    background-color: #00008B;
    color:#F8F8FF;
  }
+ a:hover {
+   text-underline: none;
+ }
+ .call {
+   border-left: 2px  #CC0000;
+   background-color: #FFFFFF;
+   border-radius: 100px;
+ }
 
 </style>
 <script type="text/javascript" src="scripts/jquery.js"></script>
@@ -198,17 +206,18 @@ $.ajax({
        color = 'bg-magenta1-light';
      }
      $("#orders").append(
-          '<a href="orderDetails.php?o='+this.id+'">'+
-             '<div data-accordion="accordion-content-10" data-height="100" class="caption caption-margins round-small bottom-5" style="height: 90px;">'+
-                '<div class="caption-center">'+
-                    '<h4 class="color-white center-text bottom-0 uppercase bolder">'+this.order_no+'</h4>'+
-                    '<p class="color-white right-text right-10 bottom-0">'+this.customer_name+' | '+this.customer_phone+'</p>'+
-                    '<p class="color-white right-text right-10 bottom-0">'+this.city+' | '+this.town+'</p>'+
+         '<div class="content-boxed '+color+'">'+
+            '<div class="content  list-columns-right">'+
+                '<div>'+
+                    '<a style="z-index:100;" class="call" href="tel:'+this.customer_phone+'"><i class="fa fa-phone color-green1-light call fa-2x"></i></a>'+
+                    '<a href="orderDetails.php?o='+this.id+'">'+
+                      '<h1 class="bolder text-center text-white">'+this.order_no+'</h1>'+
+                      '<p class=" text-center text-white">'+this.customer_phone+'<br />'+
+                      ''+this.city+' | '+this.town+' | '+this.address+'</p>'+
+                    '</a>'+
                 '</div>'+
-                '<div class="caption-overlay '+color+' opacity-80"></div>'+
-                '<div class="caption-background "></div>'+
             '</div>'+
-          '</a>'
+        '</div>'
        );
      });
      if(res.pages > res.nextPage){

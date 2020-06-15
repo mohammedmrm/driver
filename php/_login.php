@@ -9,7 +9,7 @@ if(empty($username) || empty($password)){
   $msg = "جميع الحقول مطلوبة";
 }else{
   require_once("dbconnection.php");
-  $sql = "select * from staff where phone = ? and role_id=4";
+  $sql = "select * from staff where phone = ? and (role_id=4 or role_id=2)";
   $result = getData($con,$sql,[$username]);
   if(count($result) != 1 || !password_verify($password,$result[0]['password']) ){
     $msg = "اسم المستخدم او كلمة المرور غير صحيحة";

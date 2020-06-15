@@ -411,9 +411,9 @@ $.ajax({
          '</thead><tr><th class="text-right right-10">النص</th><th>القيمة</th></th></thead>'+
          '<tbody>'+
          '<tr><td class="text-right right-10">اسم الزبون</td><td>'+this.customer_name+'</td></tr>'+
-         '<tr><td class="text-right right-10">هاتف الزبون</td><td>'+this.customer_phone+'</td></tr>'+
+         '<tr><td class="text-right right-10">هاتف الزبون</td><td><a href="tel:'+this.customer_phone+'">'+this.customer_phone+'</a></td></tr>'+
          '<tr><td class="text-right right-10">اسم العميل</td><td>'+this.client_name+'</td></tr>'+
-         '<tr><td class="text-right right-10">رقم هاتف العميل</td><td>'+this.client_phone+'</td></tr>'+
+         '<tr><td class="text-right right-10">رقم هاتف العميل</td><td><a href="tel:'+this.client_phone+'">'+this.client_phone+'</a></td></tr>'+
          '<tr><td class="text-right right-10"><br />العنوان<br /></td><td>'+this.city+' | '+this.town+'<br />'+this.address+'</td></tr>'+
          '<tr><td class="text-right right-10">مبلغ الوصل</td><td>'+this.price+'</td></tr>'+
          '<tr><td class="text-right right-10">المبلغ المستلم</td><td>'+this.new_price+'</td></tr>'+

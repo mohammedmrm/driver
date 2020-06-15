@@ -146,7 +146,21 @@ require_once("config.php");
             </div>
             </a>
         </div>
+        <div class="clear">
+            <a href="recived.php">
+            <div data-instant-id="instant-4" data-height="100" class="bg-div4 caption caption-margins round-medium shadow-large">
+                <div class="caption-center">
+                    <h1 class="center-text color-white bolder font-22">الواصل</h1>
+                    <p class="center-text color-white under-heading">الطلبيات الواصلة</p>
 
+                </div>
+                <div class="caption-bottom">
+                    <p class="center-text color-white opacity-30"></p>
+                </div>
+                <div class="caption-overlay opacity-80"></div>
+            </div>
+            </a>
+        </div>
         <div class="clear">
             <a href="earnings.php">
             <div data-instant-id="instant-4" data-height="100" class="bg-div4 caption caption-margins round-medium shadow-large">
