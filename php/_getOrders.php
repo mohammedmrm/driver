@@ -18,11 +18,10 @@ if(empty($page)){
  $page = 1;
 }
 if(empty($end)) {
-  $end = date('Y-m-d h:i:s', strtotime($end. ' + 1 day'));
+   $end = date('Y-m-d', strtotime(' + 1 day'));
 }else{
-   $end .=" 23:59:59";
+   $end = date('Y-m-d', strtotime($end. ' + 1 day'));
 }
-$start .=" 00:00:00";
 try{
   $count = "select count(*) as count from orders";
   $query = "select orders.*,
