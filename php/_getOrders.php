@@ -34,11 +34,7 @@ try{
             left join branches on  branches.id = orders.to_branch
             ";
   $where = "where";
-  if($_SESSION['role'] == 4){
-   $filter = "driver_id =".$_SESSION['userid']."  and confirm=1";
-  }else{
-   $filter = "to_branch =".$_SESSION['user_details']['branch_id']."  and confirm=1 ";
-  }
+  $filter = "driver_id =".$_SESSION['userid']."  and confirm=1 ";
   if(!empty($search)){
    $filter .= " and (order_no like '%".$search."%'
                     or customer_name like '%".$search."%'
