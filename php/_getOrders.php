@@ -82,5 +82,5 @@ if($success == '1'){
     }
   }
 }
-print_r(json_encode(array($_POST,"success"=>$success,"data"=>$data,'pages'=>$pages,'nextPage'=>$page+2)));
+print_r(json_encode(array($_POST,"success"=>$success,"data"=>$data,'pages'=>$pages+1,'nextPage'=>$page+2)));
 ?>
