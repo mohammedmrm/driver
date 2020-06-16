@@ -1887,10 +1887,10 @@ self.__precacheManifest = [
     "url": "images/splash/Thumbs.db",
     "revision": "05749e40221c54dca2e97c37469c1235"
   },*/
-  {
+/*  {
     "url": "index.php",
     "revision": "612bef9e508383a2330ed5eaa97ef885"
-  },
+  },*/
   {
     "url": "login.php",
     "revision": "10976aa85113990ffc5b4d53d00452a1"
@@ -1899,7 +1899,7 @@ self.__precacheManifest = [
 //    "url": "logout.php",
 //    "revision": "a6562a1c9a37cf5ba28073fcc20c69ab"
 //  },
-  {
+/*  {
     "url": "main.php",
     "revision": "14d9b370774a2ee97bdecae28177e426"
   },
@@ -1914,19 +1914,19 @@ self.__precacheManifest = [
   {
     "url": "orders.php",
     "revision": "8d819fa7e9b30b45d43f799cee92bf66"
-  },
+  },*/
   {
     "url": "package-lock.json",
     "revision": "6ae5c0005ad3ed9cdf9e3803c59f5b68"
   },
-  {
+/*  {
     "url": "posponded.php",
     "revision": "0d49c3174093077c80d172e80456521d"
   },
   {
     "url": "profile.php",
     "revision": "cb5f67367dfd278820997c430bdc642c"
-  },
+  },*/
   {
     "url": "pwa/android-chrome-192x192.png",
     "revision": "ee857abf4d5ec20d77205067e9f4ca55"
@@ -1967,10 +1967,10 @@ self.__precacheManifest = [
     "url": "pwa/site.webmanifest",
     "revision": "0f30bc0572bad1506b5efd773b9491a9"
   },
-  {
+/*  {
     "url": "returned.php",
     "revision": "80851c594bd8f1cbadbc8f8158ffc588"
-  },
+  },*/
   {
     "url": "scripts/charts.js",
     "revision": "217cb5d4ea048de6bd91dbce1b3bc12e"
