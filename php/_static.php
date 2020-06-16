@@ -7,8 +7,8 @@ access();
 require("dbconnection.php");
 require_once("../config.php");
 
-$start = date('Y-m-d',strtotime(' - 1 day'));
-$end= date('Y-m-d',strtotime(' + 1 day'));  
+$start = date('Y-m-d',strtotime(' - 3 day'));
+$end= date('Y-m-d',strtotime(' + 1 day'));
 $sql = "SELECT
           SUM(IF (order_status_id = '3',1,0)) as  waiting,
           SUM(IF (order_status_id = '4',1,0)) as  recived,
