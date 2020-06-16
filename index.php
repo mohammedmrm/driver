@@ -131,7 +131,7 @@ require_once("config.php");
             </a>
         </div>
 
-        <div class="one-half">
+        <div class="one-half last-column">
             <a href="posponded.php">
             <div data-instant-id="instant-3" data-height="100" class="bg-div3 caption caption-margins round-medium shadow-large">
                 <div class="caption-center">
