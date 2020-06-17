@@ -45,7 +45,7 @@ if($v->passes()) {
             inner join clients on clients.id = orders.client_id
             where orders.id = ?";
     $res =getData($con,$sql,[$order_id]);
-    sendNotification([$res[0]['s_token'],[$order_id],$res[1]['s_token'],$res[0]['c_token']],'رساله جديد - '.$order_id,$message,"../orderDetails.php?o=".$order_id);
+    sendNotification([$res[0]['s_token'],$res[0]['s_token']],[$order_id],'رساله جديد - '.$order_id,$message,"../orderDetails.php?o=".$order_id);
 
   }
 }else{
