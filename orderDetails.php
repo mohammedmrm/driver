@@ -267,7 +267,6 @@ background-color:#666666;
             <div class="input-style input-style-1 input-required">
                     <span class="input-style-1-inactive">سبب التأجيل</span>
                     <textarea id="note_posponded" name="note_posponded" placeholder="سبب التأجيل"></textarea>
-
             </div>
             <button onclick="posponded()" class="button bg-orange-dark button-full button-m shadow-large button-round-small bg-highlight top-20">تحديث حالة الطلب</button>
 
@@ -276,14 +275,22 @@ background-color:#666666;
 
 <div id="change"
      class="menu  menu-box-bottom menu-box-detached round-medium"
-     data-menu-height="300"
+     data-menu-height="500"
      data-menu-effect="menu-over">
      <div class="content">
             <h2 class="uppercase ultrabold text-center top-20 color-blue1-dark">تغير عنوان الطلبية؟</h2>
             <p class="font-16 under-heading text-center bottom-20 text-danger" id="err_msg_change"></p>
             <div class="input-style input-style-1 input-required">
-                    <span class="input-style-1-inactive">تغير العنوان الى</span>
-                    <textarea id="address" name="address" placeholder="تغير العنوان الى"></textarea>
+            <span class="input-style-1-inactive">المحافظه</span>
+                    <select class="form-control" onchange="getTowns($('#town'),$(this).val())" id="city" name="city"></select>
+            </div>
+            <div class="input-style input-style-1 input-required">
+                    <span class="input-style-1-inactive">المنطقة</span>
+                    <select class="form-control" id="town" name="town"></select>
+            </div>
+            <div class="input-style input-style-1 input-required">
+
+                    <textarea id="address" name="address" placeholder="تفاصيل العنوان"></textarea>
             </div>
             <button onclick="change()" class="button bg-blue1-dark button-full button-m shadow-large button-round-small bg-highlight top-20">تحديث حالة الطلب</button>
      </div>
@@ -388,11 +395,14 @@ background-color:#666666;
 <div class="menu-hider"></div>
 <script type="text/javascript" src="scripts/plugins.js"></script>
 <script type="text/javascript" src="scripts/custom.js"></script>
+<script type="text/javascript" src="scripts/getCities.js"></script>
+<script type="text/javascript" src="scripts/getTowns.js"></script>
    <?php include_once("top-menu.php");  ?>
    <?php include_once("bottom-menu.php");  ?>
 <script>
+getCities($("#city"));
+getTowns($("#town"),1);
 function getorder(){
-
 $.ajax({
   url:"php/_getOrder.php",
   type:"POST",
