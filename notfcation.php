@@ -34,7 +34,7 @@
  background-color: #CC4455;
 }
 .unseen{
-  background-color: #F8F8FF;
+  background-color: #E6E6FA;
 }
 .active-nav label {
     color: #FFFFFF!important;
@@ -89,7 +89,7 @@ function getNotification(){
             '<div class="content-boxed content-boxed-full">'+
                 '<a data-height="100" class="default-link default-link caption bottom-0" style="height: 100px;" href="orderDetails.php?o='+this.order_id+'&notification='+this.id+'" title="">'+
                     '<div class="caption-bottom right-20 bottom-5 text-right">'+
-                        '<h3 class="bolder font-16">'+this.title+'</h3>'+
+                        '<h3 class="bolder font-16">'+this.title+' ('+this.order_no+')</h3>'+
                         '<p class="under-heading font-14 opacity-90 bottom-0">'+
                                this.body+
                         '</p>'+
