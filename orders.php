@@ -46,6 +46,30 @@ require_once("config.php");
    background-color: #00008B;
    color:#F8F8FF;
  }
+        .bg-green_ {
+            background-color: #0F9D58;
+        }
+
+        .bg-blue_ {
+            background-color: #4285F4;
+            color: black;
+        }
+
+        .bg-yallow_ {
+            background-color: #F4B400;
+        }
+
+        .bg-gray_ {
+            background-color: #555555;
+        }
+
+        .bg-red_ {
+            background-color: #DB4437;
+        }
+
+        .bg-carrot_ {
+            background-color: #ED5E21 !important;
+        }
  a:hover {
    text-underline: none;
  }
@@ -183,21 +207,11 @@ $.ajax({
 
    console.log(res);
    $.each(res.data,function(){
-     if(this.order_status_id == 9){
-       color = 'bg-red1-dark';
-     }if(this.order_status_id == 6){
-       color = 'bg-brown1-dark';
-     }else if(this.order_status_id == 4){
-        color = 'bg-green1-dark';
-     }else if(this.order_status_id == 13){
-        color = 'bg-yellow1-dark';
-     }else if(this.order_status_id ==7){
-        color = 'bg-orange-light';
-     }else if(this.order_status_id ==1){
-        color = 'bg-dark1-dark';
-     }else{
-       color = 'bg-magenta1-light';
-     }
+      if (this.order_status_id == 13) { // changed address
+          color = 'bg-yallow_';
+      } else { //not recieved yes
+          color = 'bg-gray_';
+      }
      $("#orders").append(
          '<div class="content-boxed '+color+'">'+
             '<div class="content  list-columns-right">'+
