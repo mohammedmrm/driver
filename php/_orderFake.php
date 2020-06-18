@@ -22,9 +22,9 @@ $v->addRuleMessages([
 ]);
 
 $v->validate([
-    'id'            => [$id,            'required|int'],
-    'note'        => [$note,       'required|max(250)'],
-    'order_id'  => [$order_id, 'required|int']
+    'id'        => [$id,  'required|int'],
+    'note'      => [$note,  'required|max(250)'],
+    'order_id'  => [$order_id,'required|int']
 ]);
 
 if($v->passes()) {

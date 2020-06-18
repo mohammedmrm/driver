@@ -144,8 +144,7 @@ background-color:#666666;
 
 
    <?php include_once("pre.php");  ?>
-   <?php include_once("top-menu.php");  ?>
-   <?php include_once("bottom-menu.php");  ?>
+
 
     <div class="page-content header-clear-medium">
          <input type="hidden" id="order_id" value="<?php echo $_GET['o']?>">
@@ -389,6 +388,8 @@ background-color:#666666;
 <div class="menu-hider"></div>
 <script type="text/javascript" src="scripts/plugins.js"></script>
 <script type="text/javascript" src="scripts/custom.js"></script>
+   <?php include_once("top-menu.php");  ?>
+   <?php include_once("bottom-menu.php");  ?>
 <script>
 function getorder(){
 

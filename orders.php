@@ -189,7 +189,7 @@ $.ajax({
        color = 'bg-brown1-dark';
      }else if(this.order_status_id == 4){
         color = 'bg-green1-dark';
-     }else if(this.order_status_id == 5){
+     }else if(this.order_status_id == 13){
         color = 'bg-yellow1-dark';
      }else if(this.order_status_id ==7){
         color = 'bg-orange-light';
