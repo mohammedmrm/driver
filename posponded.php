@@ -87,7 +87,7 @@ require_once("config.php");
 
         <div class="content-boxed">
             <div class="content bottom-0">
-                <h3 class="bolder text-right">الطلبيات الراجعة</h3>
+                <h3 class="bolder text-right">الطلبيات المؤجلة</h3>
             </div>
 
 

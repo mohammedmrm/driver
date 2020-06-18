@@ -213,7 +213,7 @@ function static(){
       $("#today").text(res.today);
       $("#waiting").text(res.waiting);
       $("#returned").text(this.returned);
-      $("#poponded").text(this.poponded);
+      $("#posponded").text(this.posponded);
       $("#recived").text(this.recived);
     })
   },
