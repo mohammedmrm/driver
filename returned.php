@@ -47,6 +47,30 @@ require_once("config.php");
    min-width:10px;
    border-bottom: #777777 solid 1px;
  }
+         .bg-green_ {
+            background-color: #0F9D58;
+        }
+
+        .bg-blue_ {
+            background-color: #4285F4;
+            color: black;
+        }
+
+        .bg-yallow_ {
+            background-color: #F4B400;
+        }
+
+        .bg-gray_ {
+            background-color: #D3D3D3;
+        }
+
+        .bg-red_ {
+            background-color: #DB4437;
+        }
+
+        .bg-carrot_ {
+            background-color: #ED5E21 !important;
+        }
     .searchBar{
         background-color:coral;
         color:black;
