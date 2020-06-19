@@ -8,6 +8,8 @@ require_once("dbconnection.php");
 require_once("_sendNoti.php");
 $id = $_SESSION['userid'];
 $order_id = $_REQUEST['id'];
+$city = $_REQUEST['city'];
+$town = $_REQUEST['town'];
 $address = $_REQUEST['address'];
 $error = [];
 use Violin\Violin;
