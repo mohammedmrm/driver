@@ -1,6 +1,6 @@
 <?php
 session_start();
-//error_reporting(0);
+error_reporting(0);
 header('Content-Type: application/json');
 require("_access.php");
 access();
@@ -38,7 +38,7 @@ $v->addRuleMessages([
 
 $v->validate([
     'id'         => [$id,       'required|int'],
-    'new_price'  => [$new_price,'required|isPrice'],
+    'new_price'  => [$new_price,'isPrice'],
     'note'       => [$note,     'max(250)'],
     'order_id'   => [$order_id, "required|int"],
 ]);

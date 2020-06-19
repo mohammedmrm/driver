@@ -47,7 +47,7 @@ require_once("config.php");
    min-width:10px;
    border-bottom: #777777 solid 1px;
  }
-         .bg-green_ {
+        .bg-green_ {
             background-color: #0F9D58;
         }
 
