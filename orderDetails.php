@@ -339,6 +339,7 @@ background-color:#666666;
                      <option value="رفض الطلب">رفض الطلب</option>
                      <option value="مكرر">مكرر</option>
                      <option value="رفض الطلب">رفض الطلب</option>
+                     <option value="حظر المندوب">حظر المندوب</option>
                      <option value="لايرد بعد التاجيل">لايرد بعد التاجيل</option>
                      <option value="مسافر">مسافر</option>
                      <option value="لايمكن الاتصال به">لايمكن الاتصال به</option>
