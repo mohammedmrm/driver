@@ -344,6 +344,13 @@ background-color:#666666;
                      <option value="لايمكن الاتصال به">لايمكن الاتصال به</option>
                      <option value="مغلق بعد الاتفاق">مغلق بعد الاتفاق</option>
                      <option value="مستلم سابقا">مستلم سابقا</option>
+                     <option value="لم يطلب">لم يطلب</option>
+                     <option value="لايرد بعد سماع المكالمة">لايرد بعد سماع المكالمة</option>
+                     <option value="غلق بعد سماع المكالمة">غلق بعد سماع المكالمة</option>
+                     <option value="مغلق">مغلق</option>
+                     <option value="تم الوصول والرفض">تم الوصول والرفض</option>
+                     <option value="لم يطلب">لايرد بعد الاتفاق</option>
+                     <option value="غير داخل بالخدمة">غير داخل بالخدمة</option>
                      <option value="خطأ بالعنوان">خطأ بالعنوان</option>
                      <option value="مستلم سابقا">مستلم سابقا</option>
                      <option value="خطأ بالتجهيز">خطأ بالتجهيز</option>
