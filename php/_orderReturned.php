@@ -36,7 +36,7 @@ $v->addRuleMessages([
 
 $v->validate([
     'id'         => [$id,       'required|int'],
-    'new_price'  => [$new_price,'required|isPrice'],
+    'new_price'  => [$new_price,'isPrice'],
     'items_no'   => [$items_no,'required|int'],
     'note'       => [$note,     'max(250)'],
     'order_id'   => [$order_id, "required|int"],
