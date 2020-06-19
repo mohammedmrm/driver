@@ -442,8 +442,8 @@ $.ajax({
         '</table>'
        );
 
-       $("#order_price").val(this.price.toString());
-       $("#new_price").val(this.price.toString());
+       $("#order_price").val(""+this.price+"");
+       $("#new_price").val(""+this.price+"");
      });
    }else{
        $("#order-details").append(
