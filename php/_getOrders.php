@@ -18,12 +18,15 @@ if(empty($page)){
  $page = 1;
 }
 if(empty($end)) {
-   $end = date('Y-m-d', strtotime(' + 1 day'));
+  $end = date('Y-m-d h:i:s', strtotime($end. ' + 1 day'));
 }else{
-   $end = date('Y-m-d', strtotime($end. ' + 1 day'));
+   $end .=" 23:59:59";
 }
+$start .=" 00:00:00";
 try{
-  $count = "select count(*) as count from orders";
+  $count = "select count(*) as count from orders
+             left join driver_invoice on  driver_invoice.id = orders.driver_invoice_id
+            ";
   $query = "select orders.*,
             clients.name as client_name,clients.phone as client_phone,
             cites.name as city,towns.name as town,branches.name as branch_name
@@ -32,9 +35,10 @@ try{
             left join cites on  cites.id = orders.to_city
             left join towns on  towns.id = orders.to_town
             left join branches on  branches.id = orders.to_branch
+            left join driver_invoice on  driver_invoice.id = orders.driver_invoice_id
             ";
   $where = "where";
-  $filter = "driver_id =".$_SESSION['userid']."  and orders.confirm=1 and  (order_status_id <> 4 and order_status_id <> 9 and order_status_id <> 7) and driver_invoice_id=0";
+  $filter = "orders.driver_id =".$_SESSION['userid']."  and orders.confirm=1 and  (order_status_id <> 4 and order_status_id <> 9 and order_status_id <> 7) and (driver_invoice_id=0 or driver_invoice.invoice_status=0)";
   if(!empty($search)){
    $filter .= " and (order_no like '%".$search."%'
                     or customer_name like '%".$search."%'
@@ -82,5 +86,5 @@ if($success == '1'){
     }
   }
 }
-echo (json_encode(array($_POST,"success"=>$success,"data"=>$data,'pages'=>$pages+1,'nextPage'=>$page+2)));
+echo (json_encode(array($query,'orders'=>$ps[0]['count'],"success"=>$success,"data"=>$data,'pages'=>$pages+1,'nextPage'=>$page+2)));
 ?>

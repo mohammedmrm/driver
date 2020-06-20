@@ -120,7 +120,7 @@ require_once("config.php");
 
         <div class="content-boxed">
             <div class="content bottom-0">
-                <h3 class="bolder text-right">الطلبيات</h3>
+                <h3 class="bolder text-right">الطلبيات <span id="orders_count"></span></h3>
             </div>
 
             <script type="text/javascript" src="scripts/instascan.min.js"></script>
@@ -204,6 +204,7 @@ $.ajax({
    $("#loader").remove();
    $("#loading-items").remove();
    $("#currentPage").val(res.nextPage);
+   $("#orders_count").text(" ( "+res.orders+" ) ");
 
    console.log(res);
    $.each(res.data,function(){

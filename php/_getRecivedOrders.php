@@ -24,7 +24,9 @@ if(empty($end)) {
 }
 $start .=" 00:00:00";
 try{
-  $count = "select count(*) as count from orders";
+  $count = "select count(*) as count from orders
+           left join driver_invoice on  driver_invoice.id = orders.driver_invoice_id
+           ";
   $query = "select orders.*,
             clients.name as client_name,clients.phone as client_phone,
             cites.name as city,towns.name as town,branches.name as branch_name
@@ -33,9 +35,10 @@ try{
             left join cites on  cites.id = orders.to_city
             left join towns on  towns.id = orders.to_town
             left join branches on  branches.id = orders.to_branch
+            left join driver_invoice on  driver_invoice.id = orders.driver_invoice_id
             ";
-  $where = "where";
-  $filter = "driver_id =".$_SESSION['userid']." and (order_status_id=4 or order_status_id=6)  and orders.confirm=1 and driver_invoice_id=0";
+  $where = "where ";
+  $filter = "orders.driver_id =".$_SESSION['userid']." and (order_status_id=4 or order_status_id=6)  and orders.confirm=1 and (driver_invoice_id=0 or driver_invoice.invoice_status=0)";
   if(!empty($search)){
    $filter .= " and (order_no like '%".$search."%'
                     or customer_name like '%".$search."%'
@@ -83,5 +86,5 @@ if($success == '1'){
     }
   }
 }
-print_r(json_encode(array($_POST,"success"=>$success,"data"=>$data,'pages'=>$pages,'nextPage'=>$page+2)));
+print_r(json_encode(array('orders'=>$ps[0]['count'],"success"=>$success,"data"=>$data,'pages'=>$pages,'nextPage'=>$page+2)));
 ?>
