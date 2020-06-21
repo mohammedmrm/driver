@@ -9,7 +9,7 @@ $success=0;
 try{
   $query = "select tracking.*,status,DATE_FORMAT(date,'%Y-%m-%d') as date,DATE_FORMAT(date,'%H:%i') as hour   from tracking
   left join order_status on tracking.order_status_id = order_status.id
-  where order_id=".$id." order by date limit 100";
+  where order_id=".$id." order by id DESC limit 100";
   $data = getData($con,$query);
   if(count($data) > 0){
   $success="1";
