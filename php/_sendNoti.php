@@ -4,7 +4,7 @@
   foreach($orders as $order){
             $sql = "select * from orders where orders.id =  ?";
             $result =getData($con,$sql,[$order]);
-            if(count($res) > 0){
+            if(count($result) > 0){
               $sql = "insert into notification (title,body,for_client,staff_id,client_id,order_id)
               values(?,?,?,?,?,?)";
               $res = setData($con,$sql,[$title,$body,0,$result[0]['manager_id'],0,$order]);
