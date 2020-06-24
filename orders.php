@@ -60,7 +60,7 @@ require_once("config.php");
         }
 
         .bg-gray_ {
-            background-color: #555555;
+            background-color: #333333;
         }
 
         .bg-red_ {
@@ -228,7 +228,7 @@ $.ajax({
         '</div>'
        );
      });
-     if(res.pages > res.nextPage){
+     if(res.pages >= res.nextPage){
       $("#orders").append('<div id="loader" onclick="getorders(\'append\')" class="btn btn-link form-control aria-label="orders" center-text top-10">تحميل المزيد</div>');
       $("#orders").append('<div id="loading-items"></div>');
      }
