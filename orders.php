@@ -242,7 +242,7 @@ $.ajax({
                       '<h1 class="bolder text-center text-white">'+this.order_no+'</h1>'+
                       '<p class=" text-center text-white">'+this.customer_phone+'<br />'+
                       ''+this.city+' | '+this.town+' | '+this.address+
-                      '< br />مضى '+this.days+" يوم على تسجيل الطلب "+
+                      '<br />مضى '+this.days+" يوم على تسجيل الطلب "+
                       '</p>'+
                     '</a>'+
                 '</div>'+
