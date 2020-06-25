@@ -176,7 +176,27 @@ require_once("config.php");
      </div>
     </div>
 </div>
+<div class="modal fade" id="orderdetailsModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+        <h5 class="modal-title text-left" id="exampleModalLongTitle">تفاصيل الطلب <span id="orders_count"></span></h5>
 
+      </div>
+      <div class="modal-body">
+       <div id="order-details"></div>
+       <input type="hidden" id="order_id"/>
+      </div>
+      <div class="modal-footer text-right" dir="ltr">
+        <button type="button" onclick="showMore()" class="btn btn-warning">عرض المزيد</button>
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">اغلاق</button>
+      </div>
+    </div>
+  </div>
+</div>
 
 <script type="text/javascript" src="scripts/plugins.js"></script>
 <script type="text/javascript" src="scripts/custom.js"></script>
@@ -218,10 +238,12 @@ $.ajax({
             '<div class="content  list-columns-right">'+
                 '<div>'+
                     '<a style="z-index:100;" class="call" href="tel:'+this.customer_phone+'"><i class="fa fa-phone color-green1-light call fa-2x"></i></a>'+
-                    '<a href="orderDetails.php?o='+this.id+'">'+
+                    '<a onclick="getOrderDetails('+this.id+')" data-toggle="modal" data-target="#orderdetailsModal">'+
                       '<h1 class="bolder text-center text-white">'+this.order_no+'</h1>'+
                       '<p class=" text-center text-white">'+this.customer_phone+'<br />'+
-                      ''+this.city+' | '+this.town+' | '+this.address+'</p>'+
+                      ''+this.city+' | '+this.town+' | '+this.address+
+                      '< br />مضى '+this.days+" يوم على تسجيل الطلب "+
+                      '</p>'+
                     '</a>'+
                 '</div>'+
             '</div>'+
@@ -243,6 +265,58 @@ $('#start').datepicker({ format: 'yyyy-mm-dd'});
 $('#end').datepicker({ format: 'yyyy-mm-dd'});
 getorders('reload');
 });
+function getOrderDetails(id){
+  $("#order_id").val(id);
+$.ajax({
+  url:"php/_getOrder.php",
+  type:"POST",
+  beforeSend:function(){
+
+  },
+  data:{id : id},
+  success:function(res){
+    $("#order-details").html("");
+   console.log(res);
+   if(res.success == 1){
+     $.each(res.data,function(){
+       $("#order-details").append(
+        '<h1 class="text-center right-10">'+this.order_status+'</h1>'+
+        '<h3 class="text-center">'+this.store_name+'</h3>'+
+        '<h3 class="text-center">'+this.order_no+'</h3>'+
+        '<table style="width:100%;" class="table-striped">'+
+         '<tbody>'+
+         '<tr><td class="text-right right-10">اسم الزبون</td><td>'+this.customer_name+'</td></tr>'+
+         '<tr><td class="text-right right-10">هاتف الزبون</td><td><a href="tel:'+this.customer_phone+'">'+this.customer_phone+'</a></td></tr>'+
+         '<tr><td class="text-right right-10">اسم العميل</td><td>'+this.client_name+'</td></tr>'+
+         '<tr><td class="text-right right-10">رقم هاتف العميل</td><td><a href="tel:'+this.client_phone+'">'+this.client_phone+'</a></td></tr>'+
+         '<tr><td class="text-right right-10"><br />العنوان<br /></td><td>'+this.city+' | '+this.town+'<br />'+this.address+'</td></tr>'+
+         '<tr><td class="text-right right-10">مبلغ الوصل</td><td>'+this.price+'</td></tr>'+
+         '<tr><td class="text-right right-10">المبلغ المستلم</td><td>'+this.new_price+'</td></tr>'+
+         '<tr><td class="text-right right-10">سعر التوصيل</td><td>'+this.dev_price+'</td></tr>'+
+         '<tr><td class="text-right right-10">الخصم</td><td>'+this.discount+'</td></tr>'+
+         '<tr><td class="text-right right-10">المبلغ الصافي</td><td>'+this.client_price+'</td></tr>'+
+         '</tbody>'+
+        '</table>'
+       );
+
+       $("#order_price").val(""+this.price+"");
+       $("#new_price").val(""+this.price+"");
+     });
+   }else{
+       $("#order-details").append(
+        '<h1>خطأ</h1>'
+       );
+   }
+  },
+  error:function(e){
+   console.log(e);
+  }
+});
+
+}
+function showMore(){
+  window.location.href = "orderDetails.php?o="+$("#order_id").val();
+}
 </script>
 <script type="text/javascript" src="scripts/custom.js"></script>
 <script type="text/javascript" src="scripts/datapicker.js"></script>

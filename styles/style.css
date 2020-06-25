@@ -20,26 +20,8 @@ body * :not(.fa):not(.fab):not(.fas) {
 input[type=email],.form_datetime {
   direction: ltr !important;
 }
- #search{
-   width: 30%;
-   min-width:10px;
-   margin-left: 1.3333%;
-   margin-right: 0%;
- }
- #start {
-  width: 30%;
-  margin-left: 1.3333%;
-  margin-right: 0%;
-  min-width:10px;
-  border-bottom: #777777 solid 1px;
- }
- #end{
-   width: 30%;
-   margin-left:1.3333%;
-   margin-right: 0%;
-   min-width:10px;
-   border-bottom: #777777 solid 1px;
- }
+
+
  .toast{
   border-radius: 35px !important;
  }
