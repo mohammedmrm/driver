@@ -106,7 +106,7 @@ require_once("config.php");
 
         <div class="content-boxed">
             <div class="content bottom-0">
-                <h3 class="bolder text-right">الطلبيات الراجعة <span id="orders_count"></span></h3>
+                <h3 class="bolder text-right">الطلبيات الراجعة<span id="orders_count"></span></h3>
             </div>
 
 
@@ -181,6 +181,9 @@ $.ajax({
 });
 }
 getorders('reload');
+function showReport(){
+  window.location.href = 'reportVeiwer.php?'+$("#searchForm").serialize()+'orderStatus[]=6&orderStatus[]=9&orderStatus[]=5';
+}
 </script>
 </body>
 </html>

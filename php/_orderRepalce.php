@@ -43,7 +43,7 @@ $v->addRuleMessages([
 
 $v->validate([
     'id'         => [$id,       'required|int'],
-    'new_price'  => [$new_price,'required|isPrice'],
+    'new_price'  => [$new_price,'isPrice'],
     'items_no'   => [$items_no,'required|int'],
     'note'       => [$note,     'max(250)'],
     'order_id'   => [$order_id, "required|int"],
@@ -57,7 +57,7 @@ $v->validate([
            ];
 if($v->passes()) {
 
-   $sql = 'update orders set order_status_id =?,new_price=? where id=?';
+   $sql = 'update orders set order_status_id =?,new_price=? where id=? and driver_invoice_id=0';
    $result = setData($con,$sql,['5',$new_price,$order_id]);
    if($result > 0){
     $success = 1;
