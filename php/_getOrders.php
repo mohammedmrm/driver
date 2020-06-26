@@ -27,7 +27,7 @@ try{
   $count = "select count(*) as count from orders
              left join driver_invoice on  driver_invoice.id = orders.driver_invoice_id
             ";
-  $query = "select orders.*,
+  $query = "select orders.*,DATEDIFF('".date('Y-m-d')."', date_format(orders.date,'%Y-%m-%d')) as days, 
             clients.name as client_name,clients.phone as client_phone,
             cites.name as city,towns.name as town,branches.name as branch_name
             from orders left join
