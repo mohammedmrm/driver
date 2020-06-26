@@ -284,16 +284,16 @@ $.ajax({
         '<h3 class="text-center">'+this.order_no+'</h3>'+
         '<table style="width:100%;" class="table-striped">'+
          '<tbody>'+
-         '<tr><td class="text-right right-10">اسم الزبون</td><td class="text-right right-10">'+this.customer_name+'</td></tr>'+
-         '<tr><td class="text-right right-10">هاتف الزبون</td><td class="text-right right-10"><a href="tel:'+this.customer_phone+'">'+this.customer_phone+'</a></td></tr>'+
-         '<tr><td class="text-right right-10">اسم العميل</td><td class="text-right right-10">'+this.client_name+'</td></tr>'+
-         '<tr><td class="text-right right-10">رقم هاتف العميل</td><td class="text-right right-10"><a href="tel:'+this.client_phone+'">'+this.client_phone+'</a></td></tr>'+
-         '<tr><td class="text-right right-10"><br />العنوان<br /></td><td class="text-right right-10">'+this.city+' | '+this.town+'<br />'+this.address+'</td></tr>'+
-         '<tr><td class="text-right right-10">مبلغ الوصل</td><td class="text-right right-10">'+this.price+'</td></tr>'+
-         '<tr><td class="text-right right-10">المبلغ المستلم</td><td class="text-right right-10">'+this.new_price+'</td></tr>'+
-         '<tr><td class="text-right right-10">سعر التوصيل</td><td class="text-right right-10">'+this.dev_price+'</td></tr>'+
-         '<tr><td class="text-right right-10">الخصم</td><td class="text-right right-10">'+this.discount+'</td></tr>'+
-         '<tr><td class="text-right right-10">المبلغ الصافي</td><td class="text-right right-10">'+this.client_price+'</td></tr>'+
+         '<tr><td class="text-right right-10">اسم الزبون</td><td>'+this.customer_name+'</td></tr>'+
+         '<tr><td class="text-right right-10">هاتف الزبون</td><td><a href="tel:'+this.customer_phone+'">'+this.customer_phone+'</a></td></tr>'+
+         '<tr><td class="text-right right-10">اسم العميل</td><td>'+this.client_name+'</td></tr>'+
+         '<tr><td class="text-right right-10">رقم هاتف العميل</td><td><a href="tel:'+this.client_phone+'">'+this.client_phone+'</a></td></tr>'+
+         '<tr><td class="text-right right-10"><br />العنوان<br /></td><td>'+this.city+' | '+this.town+'<br />'+this.address+'</td></tr>'+
+         '<tr><td class="text-right right-10">مبلغ الوصل</td><td>'+this.price+'</td></tr>'+
+         '<tr><td class="text-right right-10">المبلغ المستلم</td><td>'+this.new_price+'</td></tr>'+
+         '<tr><td class="text-right right-10">سعر التوصيل</td><td>'+this.dev_price+'</td></tr>'+
+         '<tr><td class="text-right right-10">الخصم</td><td>'+this.discount+'</td></tr>'+
+         '<tr><td class="text-right right-10">المبلغ الصافي</td><td>'+this.client_price+'</td></tr>'+
          '</tbody>'+
         '</table>'
        );
