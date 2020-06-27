@@ -344,6 +344,8 @@ background-color:#666666;
                      <option value="حظر المندوب">حظر المندوب</option>
                      <option value="لايرد بعد التاجيل">لايرد بعد التاجيل</option>
                      <option value="مسافر">مسافر</option>
+                     <option value="تالف">تالف</option>
+                     <option value="راجع بسبب الحظر">راجع بسبب الحظر</option>
                      <option value="لايمكن الاتصال به">لايمكن الاتصال به</option>
                      <option value="مغلق بعد الاتفاق">مغلق بعد الاتفاق</option>
                      <option value="مستلم سابقا">مستلم سابقا</option>
