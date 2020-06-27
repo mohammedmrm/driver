@@ -361,6 +361,7 @@ background-color:#666666;
                      <option value="خطأ بالتجهيز">خطأ بالتجهيز</option>
                      <option value="نقص رقم">نقص رقم</option>
                      <option value="زيادة رقم">زيادة رقم</option>
+                     <option value="وصل بدون طلبية">وصل بدون طلبية</option>
                     </select>
 
             </div>
