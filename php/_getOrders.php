@@ -2,9 +2,9 @@
 session_start();
 error_reporting(0);
 header('Content-Type: application/json');
-require("_access.php");
+require_once("_access.php");
 access();
-require("dbconnection.php");
+require_once("dbconnection.php");
 $search = $_REQUEST['search-text'];
 $start = trim($_REQUEST['start']);
 $end = trim($_REQUEST['end']);
@@ -27,7 +27,7 @@ try{
   $count = "select count(*) as count from orders
              left join driver_invoice on  driver_invoice.id = orders.driver_invoice_id
             ";
-  $query = "select orders.*,DATEDIFF('".date('Y-m-d')."', date_format(orders.date,'%Y-%m-%d')) as days, 
+  $query = "select orders.*,DATEDIFF('".date('Y-m-d')."', date_format(orders.date,'%Y-%m-%d')) as days,
             clients.name as client_name,clients.phone as client_phone,
             cites.name as city,towns.name as town,branches.name as branch_name
             from orders left join

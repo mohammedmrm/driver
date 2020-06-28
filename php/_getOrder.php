@@ -1,10 +1,10 @@
 <?php
 session_start();
 header('Content-Type: application/json');
-require("_access.php");
+require_once("_access.php");
 access();
-require("dbconnection.php");
-require("../config.php");
+require_once("dbconnection.php");
+require_once("../config.php");
 $id = $_REQUEST['id'];
 try{
   $query = "select orders.*,
