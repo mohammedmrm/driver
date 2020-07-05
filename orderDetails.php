@@ -339,7 +339,7 @@ background-color:#666666;
                      <option value="رفض الطلب">رفض الطلب</option>
                      <option value="مكرر">مكرر</option>
                      <option value="كاذب">كاذب</option>
-                     <option value="كاذب">الرقم غير معرف</option>
+                     <option value="الرقم غير معرف">الرقم غير معرف</option>
                      <option value="رفض الطلب">رفض الطلب</option>
                      <option value="حظر المندوب">حظر المندوب</option>
                      <option value="لايرد بعد التاجيل">لايرد بعد التاجيل</option>
@@ -354,7 +354,7 @@ background-color:#666666;
                      <option value="غلق بعد سماع المكالمة">غلق بعد سماع المكالمة</option>
                      <option value="مغلق">مغلق</option>
                      <option value="تم الوصول والرفض">تم الوصول والرفض</option>
-                     <option value="لم يطلب">لايرد بعد الاتفاق</option>
+                     <option value="لايرد بعد الاتفاق">لايرد بعد الاتفاق</option>
                      <option value="غير داخل بالخدمة">غير داخل بالخدمة</option>
                      <option value="خطأ بالعنوان">خطأ بالعنوان</option>
                      <option value="مستلم سابقا">مستلم سابقا</option>
