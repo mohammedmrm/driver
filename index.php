@@ -79,10 +79,14 @@ require_once("config.php");
         <div class="content-boxed">
         <div class="col-sm-12">
           <div class="input-group mb-3">
-            <button class="input-group-prepend" onclick="search($('#search_word').val(),$('#store').val())" data-toggle="modal" data-target="#searchModal" >
+            <button class="input-group-prepend" onclick="search($('#search_word').val(),$('#in').val())" data-toggle="modal" data-target="#searchModal" >
               <span class="input-group-text" id="inputGroup-sizing-sm">بحث</span>
             </button>
             <input type="text" id="search_word" placeholder="رقم الوصل ،رقم هاتف الزبون " class="form-control" aria-label="Small" aria-describedby="inputGroup-sizing-sm">
+                <select class="form-control" id="in" aria-label="Small" aria-describedby="inputGroup-sizing-sm">
+                   <option value="1">طلبايتي</option>
+                   <option value="2">كل الشحنات</option>
+                </select>
           </div>
         </div>
         </div>
@@ -253,11 +257,11 @@ function static(){
 });
 }
 static();
-function search(search,store){
+function search(search,type){
  $.ajax({
   url:"php/_search.php",
   type:"POST",
-  data:{search:search,store:store},
+  data:{search:search,type:type},
   beforeSend:function(){
     $("#orders").addClass("loading");
   },
@@ -266,7 +270,7 @@ function search(search,store){
    $("#orders").html('');
    $("#orders_count").text(" ( "+res.orders+" ) ");
    console.log(res);
-   if($("#orders_count").val() == 0){
+   if(res.orders == 0){
      $("#orders").html("<center><h1>لايوجد طلبيات مطابقة للبحث</h1></center>")
    }
    $.each(res.data,function(){
@@ -296,6 +300,7 @@ function search(search,store){
                             +this.customer_phone+
                             '<br />'+this.city+' | '+this.town+' | '+this.address+
                             '<br />'+this.store_name+
+                            '<br /><b>'+this.driver_name+'-'+this.driver_phone+'</b>'+
                             '<br />( '+this.t_note+
                           ' )</p>'+
                         '</a>'+

@@ -39,21 +39,27 @@ $v->addRuleMessages([
     'int'      => 'فقط الارقام مسموع بها',
     'regex'    => 'فقط الارقام مسموح بها',
     'min'      => 'قصير جداً',
-    'max'      => 'مسموح ب {value} رمز كحد اعلى ',
+    'max'      => 'قيمه كبيره جداً',
     'email'    => 'البريد الالكتروني غيز صحيح',
 ]);
 
 $v->validate([
     'id'         => [$id,       'required|int'],
     'new_price'  => [$new_price,'isPrice'],
-    'note'       => [$note,     'max(250)'],
+    'note'       => [$note,     'min(1)|max(250)'],
     'order_id'   => [$order_id, "required|int"],
 ]);
+if($new_price == 0){
+  if(empty($note)){
+    $note_err ="يجب ذكر ملاحظه";
+  }else{
+   $note_err = implode($v->errors()->get('note'));
+  }
+}
+if($v->passes() && empty($note_err)){
 
-if($v->passes()) {
-
-   $sql = 'update orders set order_status_id =?,new_price=? where id=? and driver_invoice_id=0';
-   $result = setData($con,$sql,['4',$new_price,$order_id]);
+   $sql = 'update orders set order_status_id =?,new_price=? where id=? and driver_id=? and driver_invoice_id=0';
+   $result = setData($con,$sql,['4',$new_price,$order_id,$id]);
    if($result > 0){
     $success = 1;
 
@@ -76,7 +82,7 @@ if($v->passes()) {
 }else{
   $error = [
            'id'=> implode($v->errors()->get('id')),
-           'note'=> implode($v->errors()->get('note')),
+           'note'=> $note_err,
            'new_price'=>implode($v->errors()->get('new_price')),
            'order_id'=>implode($v->errors()->get('order_id')),
            ];

@@ -486,7 +486,7 @@ if($("#order_price").val() != $("#new_price").val()){
 
               getorder();
            }else{
-             $("#err_msg").html(res.error.new_price);
+             $("#err_msg").html(res.error.new_price+"<br />"+res.error.note);
            }
           },
           error:function(e){
@@ -521,7 +521,7 @@ $.ajax({
       $(".menu-hider").removeClass('menu-active');
       getorder();
    }else{
-     $("#err_msg").html(res.error.new_price);
+     $("#err_msg").html(res.error.new_price+"<br />"+res.error.note);
 
    }
   },
@@ -540,7 +540,9 @@ $.ajax({
   },
   data:{
     id : $("#order_id").val(),
-    address : $("#address").val()
+    address : $("#address").val(),
+    town : $("#town").val(),
+    city : $("#city").val(),
   },
   success:function(res){
    console.log(res);

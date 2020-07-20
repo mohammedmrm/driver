@@ -9,12 +9,15 @@ $search = $_REQUEST['search'];
 $start = trim($_REQUEST['start']);
 $end = trim($_REQUEST['end']);
 $city = trim($_REQUEST['city']);
-$store = trim($_REQUEST['store']);
+$type = trim($_REQUEST['type']);
 $limit = trim($_REQUEST['limit']);
 $page = trim($_REQUEST['currentPage']);
 $orders = 0;
 if(empty($limit)){
- $limit = 10;
+ $limit = 3;
+}
+if($type != 1 && $type != 2){
+  $type = 1;
 }
 if(empty($page)){
  $page = 1;
@@ -35,6 +38,7 @@ try{
             clients.name as client_name,clients.phone as client_phone,
             cites.name as city,towns.name as town,branches.name as branch_name,
             if(staff.phone is null,'07721397505',staff.phone) as driver_phone,
+            staff.name as driver_name,
             stores.name as store_name,tracking.note as t_note
             from orders left join
             clients on clients.id = orders.client_id
@@ -49,16 +53,21 @@ try{
             left join tracking on a.last_id = tracking.id
             ";
   $where = "where";
-  $filter = "orders.driver_id =".$_SESSION['userid']." and (orders.confirm=1)";
+  if($type == 1){
+    $filter = "orders.driver_id =".$_SESSION['userid']." and (orders.confirm=1)";
+  }else{
+    $filter = "orders.date >= (NOW() - INTERVAL 1 MONTH) and (orders.confirm=1)";
+  }
+
   if(!empty($search)){
    $filter .= " and (order_no like '%".$search."%'
                      or customer_name like  '%".$search."%'
-                     or customer_phone like '%".$search."%'
+                     or customer_phone like '".$search."%'
                      or tracking.note like  '%".$search."%'
                      )
                     ";
   }
-  $filter .= " and invoice_id=0";
+  $filter .= " and driver_invoice_id=0";
   function validateDate($date, $format = 'Y-m-d H:i:s')
     {
         $d = DateTime::createFromFormat($format, $date);
@@ -82,7 +91,7 @@ try{
   if($page != 0){
     $page = $page - 1;
   }
-  $query .= " limit ".($page * $limit).",".$limit;
+  $query .= " order by orders.date DESC limit ".($page * $limit).",".$limit;
   $data = getData($con,$query);
   $ps = getData($con,$count);
   $orders = $ps[0]['count'];
