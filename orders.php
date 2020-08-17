@@ -241,6 +241,7 @@ $.ajax({
                     '<a onclick="getOrderDetails('+this.id+')" data-toggle="modal" data-target="#orderdetailsModal">'+
                       '<h1 class="bolder text-center text-white">'+this.order_no+'</h1>'+
                       '<p class=" text-center text-white">'+this.customer_phone+'<br />'+
+                      '<p class=" text-center text-white">'+this.store_name+'<br />'+
                       ''+this.city+' | '+this.town+' | '+this.address+
                       '<br />مضى '+this.days+" يوم على تسجيل الطلب "+
                       '</p>'+
@@ -286,7 +287,7 @@ $.ajax({
          '<tbody>'+
          '<tr><td class="text-right right-10">اسم الزبون</td><td>'+this.customer_name+'</td></tr>'+
          '<tr><td class="text-right right-10">هاتف الزبون</td><td><a href="tel:'+this.customer_phone+'">'+this.customer_phone+'</a></td></tr>'+
-         '<tr><td class="text-right right-10">اسم العميل</td><td>'+this.client_name+'</td></tr>'+
+         '<tr><td class="text-right right-10">اسم الصفحه</td><td>'+this.store_name+'</td></tr>'+
          '<tr><td class="text-right right-10">رقم هاتف العميل</td><td><a href="tel:'+this.client_phone+'">'+this.client_phone+'</a></td></tr>'+
          '<tr><td class="text-right right-10"><br />العنوان<br /></td><td>'+this.city+' | '+this.town+'<br />'+this.address+'</td></tr>'+
          '<tr><td class="text-right right-10">مبلغ الوصل</td><td>'+this.price+'</td></tr>'+

@@ -27,13 +27,14 @@ try{
                ) as client_price,
             clients.name as client_name,clients.phone as client_phone,
             cites.name as city,towns.name as town,branches.name as branch_name,
-            order_status.status as order_status,
+            order_status.status as order_status,stores.name as store_name,
             if(staff.name is null,'غير معروف',staff.name) as driver_name,
             if(staff.phone is null,'غير معروف',staff.phone) as driver_phone
             from orders left join
             clients on clients.id = orders.client_id
             left join cites on  cites.id = orders.to_city
             left join towns on  towns.id = orders.to_town
+            left join stores on  stores.id = orders.store_id
             left join branches on  branches.id = orders.to_branch
             left join order_status on  order_status.id = orders.order_status_id
             left JOIN client_dev_price on client_dev_price.client_id = orders.client_id AND client_dev_price.city_id = orders.to_city

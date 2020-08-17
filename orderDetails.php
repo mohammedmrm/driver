@@ -224,7 +224,7 @@ background-color:#666666;
                     <textarea id="note" name="note" placeholder="ملاحظات"></textarea>
 
             </div>
-            <button onclick="recived()" class="button bg-green1-dark button-full button-m shadow-large button-round-small bg-highlight top-20">تحديث حالة الطلب</button>
+            <button onclick="recived()" class="button bg-green1-dark button-full button-m shadow-large button-round-small bg-highlight top-20">تم التسليم</button>
 
      </div>
 </div>
