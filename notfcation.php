@@ -56,6 +56,14 @@
             <div class="caption-overlay bg-black opacity-80"></div>
             <div class="caption-bg bg-14"></div>
         </div>
+        <div id="caption shadow-large caption-margins top-30 round-medium shadow-huge col-md-12">
+            <select class="form-control selectpicker top-30" style="width: 90%;margin-right: 2 rem" id="seen" onchange="getNotification()">
+               <option value="">--- حاله الاشعار ---</option>
+               <option value="1">مرئي</option>
+               <option value="2">غير مرئي</option>
+            </select>
+        </div>
+        <hr />
         <div id="noti_menu">
 
         </div>
@@ -75,10 +83,14 @@ function getNotification(){
     url:"php/_getNotification.php",
     beforeSend:function(){
     },
+    data:{
+      seen:$("#seen").val()
+    },
     success:function(res){
       console.log(res);
       if(res.success == 1){
         $("#noti-count").text(res.unseen + ' اشعار جديد');
+        $("#noti_menu").html("");
         $.each(res.data,function(){
           if(this.driver_seen == 0){
             bg = 'unseen';
