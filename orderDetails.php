@@ -362,6 +362,7 @@ background-color:#666666;
                      <option value="نقص رقم">نقص رقم</option>
                      <option value="زيادة رقم">زيادة رقم</option>
                      <option value="وصل بدون طلبية">وصل بدون طلبية</option>
+                     <option value="الغاء الحجز">الغاء الحجز</option>
                     </select>
 
             </div>
