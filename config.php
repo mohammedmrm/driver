@@ -1,6 +1,6 @@
 <?php
 $config = [
-   "Company_name"=>"شركة البرق",
+   "Company_name"=>"شركة النهر",
    "Company_phone"=>"1234567890",
    "Company_email"=>"nahar@nahar.com",
    "Company_logo"=>"img/logos/logo.png",

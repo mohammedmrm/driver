@@ -1,5 +1,6 @@
 <?php require_once("config.php")?>
 <link rel="manifest" href="pwa/manifest.webmanifest">
+<script src="bootstrap-4.3.1-dist/js/jquery-3.2.1.min.js"></script>
 <script src="bootstrap-4.3.1-dist/js/bootstrap.bundle.min.js"></script>
 <div class="header header-fixed header-logo-center">
         <a href="index.php" class="header-title"><?php echo $config['Company_name'];?></a>
