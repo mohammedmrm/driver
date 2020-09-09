@@ -13,7 +13,8 @@ $v = new Violin;
 $success = 0;
 $error = [];
 $id        = $_SESSION['userid'];
-$new_price = $_REQUEST['new_price'];
+$new_price = str_replace(',','',$_REQUEST['new_price']);
+$new_price = str_replace('.','',$new_price);
 $note      = $_REQUEST['note'];
 $order_id     = $_REQUEST['id'];
 
@@ -24,13 +25,9 @@ $v->addRuleMessage('isPrice', 'المبلغ غير صحيح');
 $v->addRule('isPrice', function($value, $input, $args) {
   $x=(bool) 0;
   if(preg_match("/^(0|\-\d*|\d*)(\.\d{2})?$/",$value)){
-    if($value > 0){
-       if(preg_match("/(000|500|250|750)$/",$value)){
-         $x=(bool) 1;
-       }
-    }else{
-        $x=(bool) 1;
-    }
+   if(preg_match("/(000|500|250|750)$/",$value)){
+    $x=(bool) 1;
+   }
   }
   return   $x;
 });
