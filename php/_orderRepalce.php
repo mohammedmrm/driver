@@ -57,7 +57,7 @@ $v->validate([
            ];
 if($v->passes()) {
 
-   $sql = 'update orders set order_status_id =?,new_price=? where id=? and driver_id=? and driver_invoice_id=0';
+   $sql = 'update orders set order_status_id =?,new_price=?, storage_id=0 where id=? and driver_id=? and driver_invoice_id=0';
    $result = setData($con,$sql,['5',$new_price,$order_id,$id]);
    if($result > 0){
     $success = 1;
