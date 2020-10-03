@@ -57,16 +57,27 @@ if($new_price == 0){
    $note_err = implode($v->errors()->get('note'));
   }
 }
+function httpPost($url, $data)
+{
+    $curl = curl_init($url);
+    curl_setopt($curl, CURLOPT_POST, true);
+    curl_setopt($curl, CURLOPT_SSL_VERIFYPEER, false);
+    curl_setopt($curl, CURLOPT_POSTFIELDS, http_build_query($data));
+    curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
+    $response = curl_exec($curl);
+    curl_close($curl);
+    return $response;
+}
+
 if($v->passes() && empty($note_err)){
 
    $sql = 'update orders set order_status_id =?,new_price=? where id=? and driver_id=? and driver_invoice_id=0';
    $result = setData($con,$sql,['4',$new_price,$order_id,$id]);
    if($result > 0){
     $success = 1;
-
     $sql = 'insert into tracking (order_status_id,note,order_id,staff_id) values(?,?,?,?)';
     $result = setData($con,$sql,['4',$note,$order_id,$_SESSION['userid']]);
-    $sql = "select staff.token as s_token, clients.token as c_token from orders inner join staff
+    $sql = "select staff.token as s_token, orders.id as id , clients.sync_dns as dns, clients.sync_token as token, orders.isfrom as isfrom, clients.token as c_token from orders inner join staff
             on
             staff.id = orders.manager_id
             or
@@ -74,10 +85,20 @@ if($v->passes() && empty($note_err)){
             inner join clients on clients.id = orders.client_id
             where orders.id =  ?";
     $res =getData($con,$sql,[$order_id]);
+    if($res[0]['isfrom'] == 2){
+       $response = httpPost($res[0]['dns'].'/api/orderStatusSync.php',
+        [
+         'token'=>$res[0]['token'],
+         'status'=>4,
+         'note'=>'واصل - '.$note,
+         'price'=>$new_price,
+         'id'=>$order_id,
+        ]);
+    }
     //sendNotification([$res[0]['s_token'],$res[1]['s_token'],$res[0]['c_token']],[$order_id],'طلب رقم ',"تم تسليم الطلب - ".$note,"../orderDetails.php?o=".$order_id);
   }else{
      $error['note'] = "لايمكن تحديث الحالة";
-   }
+  }
 
 
 }else{
@@ -88,5 +109,5 @@ if($v->passes() && empty($note_err)){
            'order_id'=>implode($v->errors()->get('order_id')),
            ];
 }
-echo json_encode(['success'=>$success, 'error'=>$error]);
+echo json_encode([$response,'success'=>$success, 'error'=>$error]);
 ?>
