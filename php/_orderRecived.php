@@ -109,5 +109,5 @@ if($v->passes() && empty($note_err)){
            'order_id'=>implode($v->errors()->get('order_id')),
            ];
 }
-echo json_encode([json_decode($response),'success'=>$success, 'error'=>$error]);
+echo json_encode([json_decode(substr($response, 3)),'success'=>$success, 'error'=>$error]);
 ?>
