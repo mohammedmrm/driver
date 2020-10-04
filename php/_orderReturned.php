@@ -48,7 +48,17 @@ $v->validate([
     'note'       => [$note,     'max(250)'],
     'order_id'   => [$order_id, "required|int"],
 ]);
-
+function httpPost($url, $data)
+{
+    $curl = curl_init($url);
+    curl_setopt($curl, CURLOPT_POST, true);
+    curl_setopt($curl, CURLOPT_SSL_VERIFYPEER, false);
+    curl_setopt($curl, CURLOPT_POSTFIELDS, http_build_query($data));
+    curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
+    $response = curl_exec($curl);
+    curl_close($curl);
+    return $response;
+}
 if($v->passes()) {
 
    $sql = 'update orders set order_status_id =?,new_price=? where id=? and driver_id=? and driver_invoice_id=0';
@@ -91,5 +101,5 @@ if($v->passes()) {
            'order_id'=>implode($v->errors()->get('order_id')),
            ];
 }
-echo json_encode([$response,'success'=>$success, 'error'=>$error,$_POST]);
+echo json_encode([json_decode($response,true),'success'=>$success, 'error'=>$error,$_POST]);
 ?>
