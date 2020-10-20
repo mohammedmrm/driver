@@ -7,9 +7,9 @@
             if(count($result) > 0){
               $sql = "insert into notification (title,body,for_client,staff_id,client_id,order_id)
               values(?,?,?,?,?,?)";
-              $res = setData($con,$sql,[$title,$body,0,$result[0]['manager_id'],0,$order]);
-              $res = setData($con,$sql,[$title,$body,0,$result[0]['driver_id'],0,$order]);
-              $res = setData($con,$sql,[$title,$body,1,0,$result[0]['client_id'],$order]);
+              setData($con,$sql,[$title,$body,0,$result[0]['manager_id'],0,$order]);
+              setData($con,$sql,[$title,$body,0,$result[0]['driver_id'],0,$order]);
+              setData($con,$sql,[$title,$body,1,0,$result[0]['client_id'],$order]);
               $sql2 = "select * from callcenter_cities inner join staff on staff.id=callcenter_cities.callcenter_id where city_id=?";
               $re = getData($con,$sql2,[$result[0]["to_city"]]);
               foreach($re as $callcenter){
@@ -43,6 +43,30 @@
             'Content-Type: application/json'
         ];
 
+        try{
+            $notification = [
+             'body'   => $body,
+             'title'  =>$title,
+             "sound"=>'default',
+             'subtitle'=> $order,
+             'vibrate'=> [300,100,400,100,400,100,400],
+             'vibrationPattern'=> [300,100,400,100,400,100,400],
+             'data' => $extraNotificationData
+            ];
+            require_once '../vendor/autoload.php';
+            $channelName = 'haydermohamedaliweaakalialiweaakalihellosafarticabogauallylayer';
+            // You can quickly bootup an expo instance
+            $expo = ExponentPhpSDK\Expo::normalSetup();
+            // Subscribe the recipient to the server
+            foreach($token as $v){
+              $recipient= 'ExponentPushToken['.$v.']';
+              $expo->subscribe($channelName, $recipient);
+            }
+            // Notify an interest with a notification
+            $r = $expo->notify([$channelName], $notification);
+        } catch (Exception $e) {
+            $r = $e;
+        }
 
         $ch = curl_init();
         curl_setopt($ch, CURLOPT_URL,$fcmUrl);
@@ -53,6 +77,7 @@
         curl_setopt($ch, CURLOPT_POSTFIELDS, json_encode($fcmNotification));
         $result = curl_exec($ch);
         curl_close($ch);
-        return $result;
+         $f = [$result,$r];
+        return $f;
  }
 ?>
