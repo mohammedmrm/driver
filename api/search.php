@@ -11,7 +11,6 @@ $search = $_REQUEST['search'];
 $start = trim($_REQUEST['start']);
 $end = trim($_REQUEST['end']);
 $city = trim($_REQUEST['city']);
-$store = trim($_REQUEST['store']);
 $status = trim($_REQUEST['status']);
 $limit = trim($_REQUEST['limit']);
 $page = trim($_REQUEST['page']);
@@ -73,9 +72,6 @@ try{
      }
   if($city > 0){
    $filter .= " and to_city =".$city;
-  }
-  if($store > 0){
-   $filter .= " and store_id =".$store;
   }
   if($status > 0){
    $filter .= " and orders.order_status_id =".$status;
