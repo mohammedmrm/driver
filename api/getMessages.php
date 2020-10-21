@@ -39,7 +39,7 @@ try{
           left join clients on from_id = clients.id
           left join staff on from_id = staff.id
           left join role on role.id = staff.role_id
-          where order_id = ? and message.id > ?  order by message.date
+          where order_id = ? and message.id > ?  order by message.date DESC
           ';
   $result = getData($con,$sql,[$order_id,$last]);
   if(count($result) > 0){
