@@ -11,6 +11,7 @@ require_once("../config.php");
 $id = $_REQUEST['orderid'];
 $Nid = $_REQUEST['notification_id'];
 $msg="";
+if($id > 0){
 try{
   $query = "select orders.*,
            if(order_status_id = 9,
@@ -52,7 +53,7 @@ try{
   }else{
       $query = "select tracking.*,status,DATE_FORMAT(date,'%Y-%m-%d') as date,DATE_FORMAT(date,'%H:%i') as hour from tracking
       left join order_status on tracking.order_status_id = order_status.id
-      where order_id=".$id." order by id DESC";
+      where order_id=".$id." order by tracking.id DESC";
       $data[0]['tracking'] = getData($con,$query);
   }
   if($Nid > 0){
@@ -64,6 +65,11 @@ try{
    $success="0";
    $msg ="Query Error";
 
+}
+}else{
+   $data="orderid is required";
+   $success="0";
+   $msg ="Query Error";
 }
 ob_end_clean();
 echo json_encode(array('code'=>200,'message'=>$msg,"success"=>$success,"data"=>$data),JSON_PRETTY_PRINT);
