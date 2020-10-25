@@ -35,11 +35,10 @@ if(empty($start)) {
    $start .=" 00:00:00";
 }
 try {
-$sql2 = "select driver_invoice.*,count(orders.id) as orders,date_format(driver_invoice.date,'%Y-%m-%d') as in_date,clients.name as client_name,clients.phone as client_phone
-           ,stores.name as store_name
+$sql2 = "select driver_invoice.*,count(orders.id) as orders,date_format(driver_invoice.date,'%Y-%m-%d') as in_date
            from driver_invoice
            inner join orders on orders.driver_invoice_id = driver_invoice.id
-           where clients.id=?";
+           where driver_invoice.driver_id=?";
           if(!empty($end) && !empty($start)){
             $sql2 .=' and driver_invoice.date between "'.$start.'" and "'.$end.'" ';
           }

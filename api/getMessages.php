@@ -44,7 +44,7 @@ try{
   $result = getData($con,$sql,[$order_id,$last]);
   if(count($result) > 0){
     $success = 1;
-    $sql = "update message set driver_seen = 1 where order_id=?";
+    $sql = "update message set client_seen = 1 where order_id=?";
     setData($con,$sql,[$order_id]);
   }
 } catch(PDOException $ex) {

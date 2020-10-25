@@ -21,8 +21,9 @@ if(empty($page)){
 }
 
 $msg = "";
+
 try {
-    $sql = 'select count(*) as unseen from notification where for_client = 0 and client_id = ? and client_seen=0';
+    $sql = 'select count(*) as unseen from notification where for_client = 0 and staff_id = ? and driver_seen=0';
     $res = getData($con,$sql,[$user_id]);
     $unseen = $res[0]['unseen'];
     $sql2 = 'select count(*) as count from notification
@@ -35,16 +36,18 @@ try {
     }
     $sql .= " limit ".($page * $limit).",".$limit;
 
-    $result = getData($con,$sql,[$user_id]);
+    $data = getData($con,$sql,[$user_id]);
     $count = getData($con,$sql2,[$user_id]);
-    $count = $count['0'];
-    $maxPage = ceil($count/$limit);
+    $count = $count['0']['count'];
+    if(!$count){$count=1;}
+    $maxPage = ceil(($count/$limit));
     $success = 1;
+
 }catch(PDOException $ex) {
-    $data=["error"=>$ex];
+    $data=["error"=>$ex];;
     $success="0";
     $msg ="Query Error";
 }
 ob_end_clean();
-echo json_encode(['code'=>200,'message'=>$msg,'success'=>$success,"data"=>$result,'unseen'=>$unseen,'count'=>$count,'nextPage'=>($page+2),"maxPage"=>$maxPage]);
+echo json_encode(['code'=>200,'message'=>$msg,'success'=>$success,"data"=>$data,'unseen'=>$unseen,'count'=>$count,'nextPage'=>($page+2),"maxPage"=>$maxPage]);
 ?>
