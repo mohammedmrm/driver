@@ -75,7 +75,7 @@ $sql = "select
           count(orders.id) as orders
           from orders
           left JOIN client_dev_price on client_dev_price.client_id = orders.client_id AND client_dev_price.city_id = orders.to_city
-          where orders.driver_id = ?  and invoice_id = 0 and (order_status_id = 4 or order_status_id = 5 or order_status_id = 6)  and orders.confirm=1
+          where orders.driver_id = ?  and driver_invoice_id = 0 and (order_status_id = 4 or order_status_id = 5 or order_status_id = 6)  and orders.confirm=1
           ";
           if(!empty($end) && !empty($start)){
             $sql .=' and orders.date between "'.$start.'" and "'.$end.'" ';
