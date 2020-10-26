@@ -47,7 +47,7 @@ try{
             ";
   $where = "where";
   if($status == "onway"){
-  $filter = "orders.driver_id ='".$userid."'  and (orders.confirm=1 or orders.confirm=4) and (
+  $filter = "orders.driver_id ='".$userid."'  and (orders.confirm=1 or orders.confirm=4) and orders.driver_invoice_id = 0 and (
             order_status_id = 1 or
             order_status_id = 2 or
             order_status_id = 3 or
@@ -56,13 +56,15 @@ try{
             )";
   }
   else if ($status == "returned"){
-   $filter = "orders.invoice_id= 0 and orders.driver_id =".$userid." and (orders.order_status_id=9 or orders.order_status_id=6 or orders.order_status_id=5)  and (orders.confirm=1 or orders.confirm=4) and orders.storage_id <> 1 and orders.storage_id <> -1";
+   $filter = "orders.driver_invoice_id= 0 and orders.driver_id =".$userid." and (orders.order_status_id=9 or orders.order_status_id=6 or orders.order_status_id=5)  and (orders.confirm=1 or orders.confirm=4) and orders.storage_id <> 1 and orders.storage_id <> -1";
   }
   else if ($status == "recived"){
-   $filter = "orders.invoice_id = 0 and orders.driver_id =".$userid." and (order_status_id=4)  and (orders.confirm=1 or orders.confirm=4)";
+   $filter = "orders.driver_invoice_id = 0 and orders.driver_id =".$userid." and (order_status_id=4)  and (orders.confirm=1 or orders.confirm=4)";
   }
   else if ($status == "instorage"){
-   $filter = "orders.driver_id =".$userid." and orders.confirm=1 and orders.storage_id = 1 and invoice_id=0";
+   $filter = "orders.driver_id =".$userid." and orders.confirm=1 and orders.storage_id = 1 and driver_invoice_id=0
+              and (orders.order_status_id=9 or orders.order_status_id=6 or orders.order_status_id=5)
+             ";
   }
   else if ($status == "posponded"){
    $filter = "orders.driver_id =".$userid." and order_status_id=7  and (orders.confirm=1)";
@@ -74,7 +76,8 @@ try{
             order_status_id = 3 or
             order_status_id = 8 or
             order_status_id = 13
-            )";
+            )
+            and orders.driver_invoice_id = 0";
   }
   if(!empty($search)){
    $filter .= " and (order_no like '%".$search."%'
