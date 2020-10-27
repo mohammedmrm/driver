@@ -241,10 +241,10 @@ $.ajax({
                     '<a onclick="getOrderDetails('+this.id+')" data-toggle="modal" data-target="#orderdetailsModal">'+
                       '<h1 class="bolder text-center text-white">'+this.order_no+'</h1>'+
                       '<p class=" text-center text-white">'+this.customer_phone+'<br />'+
-                      '<p class=" text-center text-white">'+this.store_name+'<br />'+
-                      '<p class=" text-center text-white">'+this.note+'<br />'+
-                      ''+this.city+' | '+this.town+' | '+this.address+
-                      '<br />مضى '+this.days+" يوم على تسجيل الطلب "+
+                        '<b>'+this.store_name+'</b><br />'+
+                        ''+this.note+'<br />'+
+                        ''+this.city+' | '+this.town+' | '+this.address+
+                        '<br />مضى '+this.days+" يوم على تسجيل الطلب "+
                       '</p>'+
                     '</a>'+
                 '</div>'+
