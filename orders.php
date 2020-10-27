@@ -296,6 +296,7 @@ $.ajax({
          '<tr><td class="text-right right-10">سعر التوصيل</td><td>'+this.dev_price+'</td></tr>'+
          '<tr><td class="text-right right-10">الخصم</td><td>'+this.discount+'</td></tr>'+
          '<tr><td class="text-right right-10">المبلغ الصافي</td><td>'+this.client_price+'</td></tr>'+
+         '<tr><td class="text-right right-10">ملاحظه</td><td>'+this.note+'</td></tr>'+
          '</tbody>'+
         '</table>'
        );
