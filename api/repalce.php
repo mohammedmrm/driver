@@ -17,10 +17,10 @@ $v = new Violin;
 $success = 0;
 $error = [];
 $id        = $_SESSION['userid'];
-$new_price = $_REQUEST['new_price'];
+$new_price = $_REQUEST['price'];
 $note      = $_REQUEST['note'];
 $items_no  = $_REQUEST['items_no'];
-$order_id  = $_REQUEST['id'];
+$order_id  = $_REQUEST['orderid'];
 
 $v->addRuleMessage('isPrice', 'المبلغ غير صحيح');
 

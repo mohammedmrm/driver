@@ -16,11 +16,11 @@ $v = new Violin;
 $success = 0;
 $error = [];
 $id        = $userid;
-$new_price = str_replace(',','',$_REQUEST['new_price']);
+$new_price = str_replace(',','',$_REQUEST['price']);
 $new_price = str_replace('.','',$new_price);
 $note      = $_REQUEST['note'];
 $items_no  = $_REQUEST['items_no'];
-$order_id  = $_REQUEST['id'];
+$order_id  = $_REQUEST['orderid'];
 
 $v->addRuleMessage('isPrice', 'المبلغ غير صحيح');
 

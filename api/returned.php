@@ -15,7 +15,7 @@ require_once('../validator/autoload.php');
 $v = new Violin;
 
 $id = $userid;
-$order_id = $_REQUEST['id'];
+$order_id = $_REQUEST['orderid'];
 $note = $_REQUEST['note'];
 $error=[];
 $success = 0;
