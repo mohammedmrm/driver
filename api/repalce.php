@@ -56,9 +56,9 @@ $v->validate([
   $error = [
            'id'=> "",
            'note'=> "",
-           'new_price'=>"",
+           'price'=>"",
            'items_no'=>"",
-           'order_id'=>"",
+           'orderid'=>"",
            ];
 function httpPost($url, $data)
 {
