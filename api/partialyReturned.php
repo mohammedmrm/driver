@@ -104,9 +104,9 @@ if($v->passes()) {
   $error = [
            'id'=> implode($v->errors()->get('id')),
            'note'=> implode($v->errors()->get('note')),
-           'new_price'=>implode($v->errors()->get('new_price')),
+           'price'=>implode($v->errors()->get('new_price')),
            'items_no'=>implode($v->errors()->get('items_no')),
-           'order_id'=>implode($v->errors()->get('order_id')),
+           'orderid'=>implode($v->errors()->get('order_id')),
            ];
    $msg ="Request Error";
 }
