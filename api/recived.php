@@ -19,7 +19,7 @@ $id        = $userid;
 $new_price = str_replace(',','',$_REQUEST['price']);
 $new_price = str_replace('.','',$new_price);
 $note      = $_REQUEST['note'];
-$order_id  = $_REQUEST['id'];
+$order_id  = $_REQUEST['orderid'];
 $msg = "";
 $v->addRuleMessage('isPrice', 'المبلغ غير صحيح');
 
@@ -111,8 +111,8 @@ if($v->passes() && empty($note_err)){
   $error = [
            'id'=> implode($v->errors()->get('id')),
            'note'=> $note_err,
-           'new_price'=>implode($v->errors()->get('new_price')),
-           'order_id'=>implode($v->errors()->get('order_id')),
+           'price'=>implode($v->errors()->get('new_price')),
+           'orderid'=>implode($v->errors()->get('order_id')),
            ];
   $msg ="Request Error";
 }
