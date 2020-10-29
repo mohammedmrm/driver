@@ -78,7 +78,7 @@ if($v->passes()) {
    if($result > 0){
     $success = 1;
     $sql = 'insert into tracking (order_status_id,note,order_id,items_no,staff_id) values(?,?,?,?,?)';
-    $result = setData($con,$sql,['5',$note,$order_id,$items_no,$_SESSION['userid']]);
+    $result = setData($con,$sql,['5',$note,$order_id,$items_no,$userid]);
     $sql = "select staff.token as s_token, orders.id as id , clients.sync_dns as dns, clients.sync_token as token, orders.isfrom as isfrom, clients.token as c_token from orders inner join staff
             on
             staff.id = orders.manager_id
