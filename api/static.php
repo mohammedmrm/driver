@@ -16,9 +16,7 @@ $start = date('Y-m-d',strtotime(' - 1 day'));
 $start .=' 12:00:00';
 $end= date('Y-m-d',strtotime(' + 1 day'));
 $sql = "SELECT
-          SUM(IF (order_status_id = '3',1,0)) as  waiting,
           SUM(IF (order_status_id = '4',1,0)) as  recived,
-          count(order_no) as  today,
           SUM(IF (order_status_id = '6' or order_status_id = '9',1,0)) as  returned,
           SUM(IF (order_status_id = '7',1,0)) as  postponded
           FROM orders
@@ -36,6 +34,8 @@ $sql = "SELECT
           FROM orders
           where driver_id='".$userid."' and confirm=1";
 $res3 = getData($con,$sql);
+$result[0]['today']= $res[0]['today'];
+$result[0]['waiting']= $res3[0]['waiting'];
 } catch(PDOException $ex) {
    $data=["error"=>$ex];
    $success="0";
