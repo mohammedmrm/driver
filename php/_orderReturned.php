@@ -1,6 +1,6 @@
 <?php
 session_start();
-error_reporting(0);
+//error_reporting(0);
 header('Content-Type: application/json');
 require_once("_access.php");
 access();
@@ -101,5 +101,5 @@ if($v->passes()) {
            'order_id'=>implode($v->errors()->get('order_id')),
            ];
 }
-echo json_encode([json_decode(substr($response, 3)),'success'=>$success, 'error'=>$error,$_POST]);
+echo json_encode(['response'=>json_decode(substr($response, 3)),'success'=>$success, 'error'=>$error]);
 ?>
