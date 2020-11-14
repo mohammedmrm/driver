@@ -36,11 +36,36 @@ $sql = "SELECT
 $res3 = getData($con,$sql);
 $result[0]['today']= $res[0]['today'];
 $result[0]['waiting']= $res3[0]['waiting'];
+    $sql = "SELECT
+          SUM(IF (order_status_id = '1' or order_status_id = '2' or order_status_id = '3' or order_status_id = '13',1,0)) as  onway,
+          SUM(IF (order_status_id = '9',1,0)) as  inprocess,
+          SUM(IF (order_status_id = '6',1,0)) as  partiallyReturnd,
+          SUM(IF (order_status_id = '5',1,0)) as  `replace`,
+          SUM(IF ((order_status_id = '9') and storage_id=1,1,0)) as  instorageReturnd,
+          SUM(IF ((order_status_id = '6') and storage_id=1,1,0)) as  instoragepartiallyReturnd,
+          SUM(IF ((order_status_id = '5') and storage_id=1,1,0)) as  instoragereplace,
+          SUM(IF (order_status_id = '4',1,0)) as  recieved,
+          SUM(IF (order_status_id = '7',1,0)) as  posponded,
+          sum(new_price -
+              (
+                 if(order_status_id = 6 or order_status_id = 5 or order_status_id = 4,
+                     if(to_city = 1,
+                           if(client_dev_price.price is null,(".$config['dev_b']." - discount),(client_dev_price.price - discount)),
+                           if(client_dev_price.price is null,(".$config['dev_o']." - discount),(client_dev_price.price - discount))
+                      ),
+                      0
+                  )
+              )
+          ) as client_price
+          FROM orders
+          left JOIN client_dev_price on client_dev_price.client_id = orders.client_id AND client_dev_price.city_id = orders.to_city
+          where orders.driver_id=".$userid." and driver_invoice_id=0";
+          $static =  getData($con,$sql);
 } catch(PDOException $ex) {
    $data=["error"=>$ex];
    $success="0";
    $msg ="Query Error";
 }
 ob_end_clean();
-echo(json_encode(array('code'=>200,'message'=>$msg,"data"=>$result,"today"=>$res[0]['today'],'waiting'=>$res3[0]['waiting']),JSON_PRETTY_PRINT));
+echo(json_encode(array('code'=>200,'message'=>$msg,"data"=>$result,"today"=>$res[0]['today'],'waiting'=>$res3[0]['waiting'],'static'=>$static),JSON_PRETTY_PRINT));
 ?>
