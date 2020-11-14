@@ -38,9 +38,9 @@ $result[0]['today']= $res[0]['today'];
 $result[0]['waiting']= $res3[0]['waiting'];
     $sql = "SELECT
           SUM(IF (order_status_id = '1' or order_status_id = '2' or order_status_id = '3' or order_status_id = '13',1,0)) as  onway,
-          SUM(IF (order_status_id = '9' and storage_id<>1,1,0)) as  inprocess,
-          SUM(IF (order_status_id = '6' and storage_id<>1,1,0)) as  partiallyReturnd,
-          SUM(IF (order_status_id = '5' and storage_id<>1,1,0)) as  `replace`,
+          SUM(IF (order_status_id = '9' and storage_id<>1 and orders.storage_id <> -1,1,0)) as  inprocess,
+          SUM(IF (order_status_id = '6' and storage_id<>1 and orders.storage_id <> -1,1,0)) as  partiallyReturnd,
+          SUM(IF (order_status_id = '5' and storage_id<>1 and orders.storage_id <> -1,1,0)) as  `replace`,
           SUM(IF ((order_status_id = '9') and storage_id=1,1,0)) as  instorageReturnd,
           SUM(IF ((order_status_id = '6') and storage_id=1,1,0)) as  instoragepartiallyReturnd,
           SUM(IF ((order_status_id = '5') and storage_id=1,1,0)) as  instoragereplace,
