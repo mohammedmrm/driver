@@ -59,7 +59,7 @@ $result[0]['waiting']= $res3[0]['waiting'];
           ) as client_price
           FROM orders
           left JOIN client_dev_price on client_dev_price.client_id = orders.client_id AND client_dev_price.city_id = orders.to_city
-          where orders.driver_id=".$userid." and driver_invoice_id=0";
+          where orders.driver_id=".$userid." and driver_invoice_id=0 and confirm=1";
           $static =  getData($con,$sql);
 } catch(PDOException $ex) {
    $data=["error"=>$ex];
