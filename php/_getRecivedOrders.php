@@ -29,7 +29,7 @@ try{
            ";
   $query = "select orders.*,stores.name as store_name,
             clients.name as client_name,
-            if(orders.bar_code > 0 and orders.remote_client_phone is not null,remote_clinet_phone,clients.phone) as client_phone,
+            if(isfrom = 2 and orders.remote_client_phone is not null,remote_clinet_phone,clients.phone) as client_phone,
             cites.name as city,towns.name as town,branches.name as branch_name
             from orders left join
             clients on clients.id = orders.client_id
