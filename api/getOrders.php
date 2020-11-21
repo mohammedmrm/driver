@@ -33,7 +33,7 @@ try{
   $count = "select count(*) as count from orders";
   $query = "select orders.*,DATEDIFF('".date('Y-m-d')."', date_format(orders.date,'%Y-%m-%d')) as days,
             clients.name as client_name,
-            if(orders.bar_code > 0 and orders.remote_client_phone is not null,remote_clinet_phone,clients.phone) as client_phone,
+            if(orders.bar_code > 0 and orders.remote_client_phone is not null,remote_client_phone,clients.phone) as client_phone,
             cites.name as city,towns.name as town,branches.name as branch_name,
             if(staff.phone is null,'/',staff.phone) as driver_phone,
             stores.name as store_name ,order_status.status as status_name

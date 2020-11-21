@@ -29,7 +29,7 @@ try{
             ";
   $query = "select orders.*,DATEDIFF('".date('Y-m-d')."', date_format(orders.date,'%Y-%m-%d')) as days,
             clients.name as client_name,
-            if(isfrom = 2 and orders.remote_client_phone is not null,remote_clinet_phone,clients.phone) as client_phone,
+            if(isfrom = 2 and orders.remote_client_phone is not null,remote_client_phone,clients.phone) as client_phone,
             stores.name as store_name,
             cites.name as city,towns.name as town,branches.name as branch_name
             from orders left join
