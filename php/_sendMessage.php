@@ -58,7 +58,7 @@ if($v->passes()) {
                    where orders.id=?";
            $order = getData($con,$sql,[$order_id]);
            if($order[0]['isfrom'] == 2 && $order[0]['remote_id'] > 1){
-             $response = httpPost($order[0]['dns'].'/api/shareMessageToClinet.php',
+             $response = httpPost($order[0]['dns'].'/api/shareMessageToClient.php',
                   [
                    'token'=>$order[0]['token'],
                    'message'=>$message,
@@ -67,9 +67,9 @@ if($v->passes()) {
               ]);
            }else{
              $sql = "select
-                     companies.sync_token as token,
+                     companies.token as token,
                      companies.dns as dns, orders.id as id,
-                     orders.remote_id as remote_id
+                     orders.bar_code as bar_code
                      from orders
                      left join companies on orders.delivery_company_id = companies.id
                      where orders.id=?";
