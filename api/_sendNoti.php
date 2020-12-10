@@ -55,9 +55,10 @@
              'title'  =>$title,
              "sound"=>'default',
              'subtitle'=> $order,
+             '_displayInForeground'=>true,
              'vibrate'=> [300,100,400,100,400,100,400],
              'vibrationPattern'=> [300,100,400,100,400,100,400],
-             'data' => $extraNotificationData
+             'data'=>["message" => '',"moredata" =>'']
             ];
             require_once '../vendor/autoload.php';
 
@@ -65,21 +66,20 @@
             $i=0;
             foreach($token as $v){
               if (substr($v, 0, 17) == 'ExponentPushToken') {
-                $channelName = 'alnahr_user_'.$ids[$i];
+                //$channelName = 'alnahr_users_'.$ids[$i];
+                $channelName = uniqid();
                 // You can quickly bootup an expo instance
                 $expo = ExponentPhpSDK\Expo::normalSetup();
                 $recipient= $v;
                 $expo->subscribe($channelName, $recipient);
+                $r = $expo->notify([$channelName], $notification);
               }
               $i++;
             }
             // Notify an interest with a notification
-            if($channelName){
-              $r = $expo->notify([$channelName], $notification);
-            }
-        } catch (Exception $e) {
-            $r = $e;
-        }
+         } catch (Exception $e) {
+              $r = [$e,'error'];
+         }
 
         $ch = curl_init();
         curl_setopt($ch, CURLOPT_URL,$fcmUrl);
@@ -90,7 +90,7 @@
         curl_setopt($ch, CURLOPT_POSTFIELDS, json_encode($fcmNotification));
         $result = curl_exec($ch);
         curl_close($ch);
-         $f = [$result,$r,$recipient,$channelName];
+        $f = [$result,$expo,$r,$recipient,$channelName];
         return $f;
  }
 ?>
