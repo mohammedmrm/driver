@@ -54,7 +54,7 @@
              'body'   => $body,
              'title'  =>$title,
              "sound"=>'default',
-             'subtitle'=> $order,
+             'subtitle'=> $orders[0],
              '_displayInForeground'=>true,
              'vibrate'=> [300,100,400,100,400,100,400],
              'vibrationPattern'=> [300,100,400,100,400,100,400],

@@ -238,7 +238,7 @@ $.ajax({
             '<div class="content  list-columns-right">'+
                 '<div>'+
                     '<a style="z-index:100;" class="call" href="tel:'+this.customer_phone+'"><i class="fa fa-phone color-green1-light call fa-2x"></i></a>'+
-                    '<a onclick="getOrderDetails('+this.id+')" data-toggle="modal" data-target="#orderdetailsModal">'+
+                    '<a href="javascript:;" onclick="getOrderDetails('+this.id+')" data-toggle="modal" data-target="#orderdetailsModal">'+
                       '<h1 class="bolder text-center text-white">'+this.order_no+'</h1>'+
                       '<p class=" text-center text-white">'+this.customer_phone+'<br />'+
                         '<b>'+this.store_name+'</b><br />'+
