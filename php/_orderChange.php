@@ -48,7 +48,7 @@ if($v->passes()) {
    if($result > 0){
     $success = 1;
     $sql = 'insert into tracking (order_status_id,note,order_id,new_address,staff_id) values(?,?,?,?,?)';
-    $result = setData($con,$sql,['8','تغير العنوان',$order_id,$address,$id]);
+    $result = setData($con,$sql,['8','تغير العنوان',$order_id,$city."-".$town."-"$address,$id]);
     $sql = "select staff.token as s_token, orders.id as id , clients.sync_dns as dns, clients.sync_token as token, orders.isfrom as isfrom, clients.token as c_token from orders inner join staff
             on
             staff.id = orders.manager_id
@@ -68,8 +68,8 @@ if($v->passes()) {
          'id'=>$order_id,
         ]);
     }
-    $sql = "update orders set driver_id=?,to_city=?,to_town=? where id=?";
-    setData($con,$sql,[$driver[0]['driver_id'],$city,$town,$order_id]);
+    //$sql = "update orders set driver_id=?,to_city=?,to_town=? where id=?";
+    //setData($con,$sql,[$driver[0]['driver_id'],$city,$town,$order_id]);
     sendNotification([$res[0]['s_token'],$res[1]['s_token'],$res[0]['c_token']],[$order_id],'طلب رقم  ',"تغير عنوان الطلب - ".$note,"../orderDetails.php?o=".$order_id);
    }else{
      $error['address'] = "لايمكن تحديث الحالة";
