@@ -50,7 +50,7 @@ if($v->passes()) {
   try{
    $sql = 'select * from driver_towns where town_id=?';
    $driver = getData($con,$sql,[$town]);
-   $sql = 'update orders set order_status_id =? where id=? and driver_id=? and driver_invoice_id=0';
+   $sql = 'update orders set order_status_id =? where id=? and driver_id=? and driver_invoice_id=0 and storage_id=0 and invoice_id=0';
    $result = setData($con,$sql,['8',$order_id,$id]);
    if($result > 0){
     $success = 1;
@@ -75,8 +75,8 @@ if($v->passes()) {
          'id'=>$order_id,
         ]);
     }
-    $sql = "update orders set driver_id=?,to_city=?,to_town=? where id=?";
-    setData($con,$sql,[$driver[0]['driver_id'],$city,$town,$order_id]);
+    //$sql = "update orders set driver_id=?,to_city=?,to_town=? where id=?";
+    //setData($con,$sql,[$driver[0]['driver_id'],$city,$town,$order_id]);
     sendNotification([$res[0]['s_token'],$res[1]['s_token'],$res[0]['c_token']],[$order_id],'طلب رقم ',"تغير عنوان الطلب - ".$note,"../orderDetails.php?o=".$order_id);
    }else{
      $error['address'] = "لايمكن تحديث الحالة";

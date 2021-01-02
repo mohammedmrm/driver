@@ -74,7 +74,7 @@ function httpPost($url, $data)
 
 if($v->passes() && empty($note_err)){
    try{
-   $sql = 'update orders set order_status_id =?,new_price=? where id=? and driver_id=? and driver_invoice_id=0';
+   $sql = 'update orders set order_status_id =?,new_price=? where id=? and driver_id=? and driver_invoice_id=0 and storage_id=0 and invoice_id=0';
    $result = setData($con,$sql,['4',$new_price,$order_id,$id]);
    if($result > 0){
     $success = 1;

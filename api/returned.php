@@ -47,7 +47,7 @@ function httpPost($url, $data)
 if($v->passes()) {
    try{
    $sql = 'update orders set order_status_id =?,new_price=?
-           where id=? and driver_id=? and driver_invoice_id=0';
+           where id=? and driver_id=? and driver_invoice_id=0 and storage_id=0 and invoice_id=0';
    $result = setData($con,$sql,['9',0,$order_id,$id]);
    if($result > 0){
     $success = 1;
