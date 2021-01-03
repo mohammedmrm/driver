@@ -48,7 +48,7 @@ if($v->passes()) {
    if($result > 0){
     $success = 1;
     $sql = 'insert into tracking (order_status_id,note,order_id,new_address,staff_id) values(?,?,?,?,?)';
-    $result = setData($con,$sql,['8','تغير العنوان',$order_id,$city."-".$town."-"$address,$id]);
+    $result = setData($con,$sql,['8','تغير العنوان',$order_id,$city."-".$town."-".$address,$id]);
     $sql = "select staff.token as s_token, orders.id as id , clients.sync_dns as dns, clients.sync_token as token, orders.isfrom as isfrom, clients.token as c_token from orders inner join staff
             on
             staff.id = orders.manager_id
