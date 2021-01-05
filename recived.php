@@ -129,7 +129,7 @@ $.ajax({
      }
      $("#orders").append(
           '<a href="orderDetails.php?o='+this.id+'">'+
-             '<div data-accordion="accordion-content-10" data-height="100" class="caption caption-margins round-small bottom-5" style="height: 90px;">'+
+             '<div data-accordion="accordion-content-10" class="caption caption-margins round-small bottom-5" style="height: 90px;">'+
                 '<div class="caption-center">'+
                     '<h4 class="color-white center-text bottom-0 uppercase bolder">'+this.order_no+'</h4>'+
                     '<p class="color-white right-text right-10 bottom-0">'+this.store_name+'</p>'+
@@ -142,7 +142,7 @@ $.ajax({
           '</a>'
        );
      });
-     if(res.pages > res.nextPage){
+     if(res.pages >= res.nextPage){
       $("#orders").append('<div id="loader" onclick="getorders(\'append\')" class="btn btn-link form-control center-text top-10">تحميل المزيد</div>');
       $("#orders").append('<div id="loading-items"></div>');
      }
