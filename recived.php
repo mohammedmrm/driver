@@ -1,5 +1,6 @@
 <?php
 require_once("php/_access.php");
+require_once("config.php");
 access();
 ?>
 <!DOCTYPE HTML>
@@ -129,12 +130,12 @@ $.ajax({
      }
      $("#orders").append(
           '<a href="orderDetails.php?o='+this.id+'">'+
-             '<div data-accordion="accordion-content-10" class="caption caption-margins round-small bottom-5" style="height: 90px;">'+
+             '<div data-accordion="accordion-content-10" class="caption caption-margins round-small bottom-5" style="height: 120px;">'+
                 '<div class="caption-center">'+
                     '<h4 class="color-white center-text bottom-0 uppercase bolder">'+this.order_no+'</h4>'+
-                    '<p class="color-white right-text right-10 bottom-0">'+this.store_name+'</p>'+
-                    '<p class="color-white right-text right-10 bottom-0">'+this.customer_name+' | '+this.customer_phone+'</p>'+
-                    '<p class="color-white right-text right-10 bottom-0">'+this.city+' | '+this.town+'</p>'+
+                    '<p class="color-white center-text right-10 bottom-0">'+this.store_name+'</p>'+
+                    '<p class="color-white center-text right-10 bottom-0">'+this.customer_name+' | '+this.customer_phone+'</p>'+
+                    '<p class="color-white center-text right-10 bottom-0">'+this.city+' | '+this.town+'</p>'+
                 '</div>'+
                 '<div class="caption-overlay '+color+' opacity-80"></div>'+
                 '<div class="caption-background "></div>'+
