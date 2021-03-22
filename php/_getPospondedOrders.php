@@ -41,7 +41,7 @@ try{
             left join driver_invoice on  driver_invoice.id = orders.driver_invoice_id
             ";
   $where = "where ";
-  $filter = "orders.driver_id =".$_SESSION['userid']." and order_status_id=7   and confirm=1 and (driver_invoice_id=0)";
+  $filter = "orders.driver_id =".$_SESSION['userid']." and order_status_id=7   and orders.confirm=1 and (driver_invoice_id=0)";
   if(!empty($search)){
    $filter .= " and (order_no like '%".$search."%'
                     or customer_name like '%".$search."%'
