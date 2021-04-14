@@ -182,14 +182,14 @@ background-color:#666666;
               </div>
            </div>
            <div class="clear"></div>
-           <div class="one-half">
+<!--           <div class="one-half">
               <div class="bottom-5 color-white font-20 link-list link-list-1 bg-yellow1-dark rounded">
                 <a href="#" data-menu="replace"  class="link">
                 <span class="text-center color-white left-0 right-0 top-10 bottom-10">استبدال</span>
                 </a>
               </div>
-           </div>
-           <div class="one-half last-column">
+           </div>-->
+           <div class="last-column">
               <div class="bottom-5 color-white font-20 link-list link-list-1 bg-red1-dark rounded">
                 <a href="#" data-menu="fake"  class="link">
                 <span class="text-center color-white left-0 right-0 top-10 bottom-10">راجع كلي</span>
