@@ -28,6 +28,7 @@ $v->addRule('isPrice', function($value, $input, $args) {
      }
    }else{
     $x=(bool) 1;
+    
    }
   }
   return   $x;
