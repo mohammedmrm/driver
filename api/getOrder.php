@@ -57,19 +57,19 @@ try{
       where order_id=".$id." order by tracking.id DESC";
       $data[0]['tracking'] = getData($con,$query);
   }
-  if($data[0]['t_note']){
+  if(empty($data[0]['t_note'])){
     $data[0]['t_note'] = "";
   }
-  if($data[0]['remote_client_phone']){
+  if(empty($data[0]['remote_client_phone'])){
     $data[0]['remote_client_phone'] = "";
   }
-  if($data[0]['remote_driver_phone']){
+  if(empty($data[0]['remote_driver_phone'])){
     $data[0]['remote_driver_phone'] = "";
   }
-  if($data[0]['customer_name']){
+  if(empty($data[0]['customer_name'])){
     $data[0]['customer_name'] = "";
   }
-  if($data[0]['qty']){
+  if(empty($data[0]['qty'])){
     $data[0]['qty'] = 1;
   }
   if($Nid > 0){
