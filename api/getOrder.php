@@ -66,11 +66,14 @@ try{
   if(empty($data[0]['remote_driver_phone'])){
     $data[0]['remote_driver_phone'] = "";
   }
-  if(empty($data[0]['customer_name'])){
-    $data[0]['customer_name'] = "";
+  if(empty($data[0]['customer_name']) || $data[0]['customer_name'] == ""){
+    $data[0]['customer_name'] = "NA";
   }
   if(empty($data[0]['qty'])){
     $data[0]['qty'] = 1;
+  }
+  if(empty($data[0]['bar_code'])){
+    $data[0]['bar_code'] = 0;
   }
   if($Nid > 0){
     $sql = "update notification set client_seen = 1 where id=? and order_id=?";
