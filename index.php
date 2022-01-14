@@ -23,7 +23,9 @@ require_once("config.php");
 <link rel="stylesheet" type="text/css" href="fonts/css/fontawesome-all.min.css">
 <link rel="stylesheet" type="text/css" href="styles/toast.css">
 <link rel="manifest" href="pwa/site.webmanifest">
-
+<?php
+echo $config['analytics'];
+?>
 </head>
 
 <body class="theme-light" data-background="none" data-highlight="red2">
