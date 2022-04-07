@@ -195,7 +195,6 @@ require_once("config.php");
             <div data-instant-id="instant-4" data-height="100" class="bg-div4 caption caption-margins round-medium shadow-large">
               <div class="caption-center">
                 <h1 class="center-text color-white bolder font-22">الارباح</h1>
-                <p class="center-text color-white under-heading">تقرير بالارباح ضمن فترات زمنية محددة</p>
                 <label class="center-text color-white under-heading"><label id="recived-price"">0</label>
               الف الاجر التقريبي
               </label>
