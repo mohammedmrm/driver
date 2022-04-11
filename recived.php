@@ -117,7 +117,7 @@ access();
                $("#loader").remove();
                $("#loading-items").remove();
                $("#currentPage").val(res.nextPage);
-               $("#orders_count").text(` ( ${res.orders}) - ${res.total} الف`);
+               $("#orders_count").text(` ( ${res.orders}) <br> ${res.total} الف`);
                console.log(res);
                $.each(res.data, function() {
                   if (this.order_status_id == 9) {
