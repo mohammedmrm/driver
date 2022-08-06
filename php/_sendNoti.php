@@ -64,7 +64,7 @@ function sendNotification($token, $orders = [], $title = "Title", $body = "Body"
       "sound" => 'default',
       "priority" => "high",
       '_displayInForeground' => true,
-      'data' => ["id" => $orders[0], "moredata" => '']
+      'data' => ["id" => $order, "moredata" => '']
     ];
 
     // Subscribe the recipient to the server
