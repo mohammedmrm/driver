@@ -7,33 +7,33 @@ Server-side library for working with Expo push notifications using PHP
 
 # Usage
 - Require the package in your project
-
-        composer require alymosul/exponent-server-sdk-php
-        
+```bash
+composer require alymosul/exponent-server-sdk-php
+```
 - In a php file
-        
-        require_once __DIR__.'/vendor/autoload.php';
-        
-        $channelName = 'news';
-        $recipient= 'ExponentPushToken[unique]';
-        
-        // You can quickly bootup an expo instance
-        $expo = \ExponentPhpSDK\Expo::normalSetup();
-        
-        // Subscribe the recipient to the server
-        $expo->subscribe($channelName, $recipient);
-        
-        // Build the notification data
-        $notification = ['body' => 'Hello World!'];
-        
-        // Notify an interest with a notification
-        $expo->notify($channelName, $notification);
-        
-Data can be added to notifications by providing it as a JSON object. For example
-
-
-        // Build the notification data
-        $notification = ['body' => 'Hello World!', 'data'=> json_encode(array('someData' => 'goes here'))];
+```php
+    require_once __DIR__.'/vendor/autoload.php';
+    
+    $channelName = 'news';
+    $recipient= 'ExponentPushToken[unique]';
+    
+    // You can quickly bootup an expo instance
+    $expo = \ExponentPhpSDK\Expo::normalSetup();
+    
+    // Subscribe the recipient to the server
+    $expo->subscribe($channelName, $recipient);
+    
+    // Build the notification data
+    $notification = ['body' => 'Hello World!'];
+    
+    // Notify an interest with a notification
+    $expo->notify([$channelName], $notification);
+ ```
+Data can be added to notifications by providing it as a JSON object. For example:
+```php
+// Build the notification data
+$notification = ['body' => 'Hello World!', 'data'=> json_encode(array('someData' => 'goes here'))];
+```
 
 # Channel name
 
@@ -55,7 +55,7 @@ $expo->subscribe($channelName, $recipient);
 // …
 
 // Notify an interest with a notification, only one recipient will receive it
-$expo->notify($channelName, $notification);
+$expo->notify([$channelName], $notification);
 ```
 
 ## Several recipients
@@ -77,9 +77,13 @@ $expo->subscribe($channelName, $recipient2);
 // …
 
 // Notify an interest with a notification, the 2 recipients will receive it
-$expo->notify($channelName, $notification);
+$expo->notify([$channelName], $notification);
 ```
 
+```php
+// Build the notification data
+$notification = ['body' => 'Hello World!', 'data'=> json_encode(array('someData' => 'goes here'))];
+```
 # TODO
 - Need to create tests    
 

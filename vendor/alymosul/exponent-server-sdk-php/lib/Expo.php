@@ -26,6 +26,11 @@ class Expo
      * @var ExpoRegistrar
      */
     private $registrar;
+    
+    /** 
+     * @var string|null
+     */
+    private $accessToken = null;
 
     /**
      * Expo constructor.
@@ -73,11 +78,18 @@ class Expo
     {
         return $this->registrar->removeInterest($interest, $token);
     }
+    
+    /**
+     * @param string|null $accessToken
+     */
+    public function setAccessToken(string $accessToken = null) {
+        $this->accessToken = $accessToken;
+    }
 
     /**
      * Send a notification via the Expo Push Notifications Api.
      *
-     * @param $interests
+     * @param array $interests
      * @param array $data
      * @param bool $debug
      *
@@ -86,13 +98,9 @@ class Expo
      *
      * @return array|bool
      */
-    public function notify($interests, array $data, $debug = false)
+    public function notify(array $interests, array $data, $debug = false)
     {
         $postData = [];
-
-        if (is_string($interests)) {
-            $interests = [$interests];
-        }
 
         if (count($interests) == 0) {
             throw new ExpoException('Interests array must not be empty.');
@@ -112,7 +120,7 @@ class Expo
         $response = $this->executeCurl($ch);
 
         // If the notification failed completely, throw an exception with the details
-        if (!$debug && $this->failedCompletely($response, $interests)) {
+        if ($debug && $this->failedCompletely($response, $recipients)) {
             throw ExpoException::failedCompletelyException($response);
         }
 
@@ -123,13 +131,13 @@ class Expo
      * Determines if the request we sent has failed completely
      *
      * @param array $response
-     * @param array $interests
+     * @param array $recipients
      *
      * @return bool
      */
-    private function failedCompletely(array $response, array $interests)
+    private function failedCompletely(array $response, array $recipients)
     {
-        $numberOfInterests = count($interests);
+        $numberOfRecipients = count($recipients);
         $numberOfFailures = 0;
 
         foreach ($response as $item) {
@@ -138,7 +146,7 @@ class Expo
             }
         }
 
-        return $numberOfFailures === $numberOfInterests;
+        return $numberOfFailures === $numberOfRecipients;
     }
 
     /**
@@ -152,12 +160,18 @@ class Expo
     {
         $ch = $this->getCurl();
 
+        $headers = [
+                'accept: application/json',
+                'content-type: application/json',
+        ];
+
+        if ($this->accessToken) {
+            $headers[] = sprintf('Authorization: Bearer %s', $this->accessToken);
+        }
+
         // Set cURL opts
         curl_setopt($ch, CURLOPT_URL, self::EXPO_API_URL);
-        curl_setopt($ch, CURLOPT_HTTPHEADER, [
-            'accept: application/json',
-            'content-type: application/json',
-        ]);
+        curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
         curl_setopt($ch, CURLOPT_POST, 1);
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
 
