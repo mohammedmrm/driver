@@ -39,7 +39,7 @@ if ($v->passes()) {
   $result = setData($con, $sql, [$message, $order_id, $_SESSION['userid']]);
   if ($result > 0) {
     $success = 1;
-    $sql = "select staff.token as s_token, clients.token as c_token from orders inner join staff
+    $sql = "select orders.order_no,staff.token as s_token, clients.token as c_token from orders inner join staff
             on
             staff.id = orders.manager_id
             or
@@ -47,7 +47,7 @@ if ($v->passes()) {
             inner join clients on clients.id = orders.client_id
             where orders.id = ?";
     $res = getData($con, $sql, [$order_id]);
-    sendNotification([$res[0]['s_token'], $res[0]['c_token']], [$order_id], 'رساله جديد - ' . $order_id, $message, "../orderDetails.php?o=" . $order_id);
+    sendNotification([$res[0]['s_token'], $res[0]['c_token']], [$order_id], 'رساله جديد - ' . $res[0]['order_no'], $message, "../orderDetails.php?o=" . $order_id);
     //--- snyc
     $sql = "select
                    isfrom ,
