@@ -28,7 +28,7 @@ try {
   $success = "0";
   $msg = "Query Error";
 }
-$config['d_ad1'] = strip_tags(trim($config['d_ad1']));
-$config['d_ad2'] = strip_tags(trim($config['d_ad2']));
+$config['d_ad1'] = str_replace('&nbsp;', ' ', strip_tags(trim($config['d_ad1'])));
+$config['d_ad2'] = str_replace('&nbsp;', ' ', strip_tags(trim($config['d_ad2'])));
 ob_end_clean();
 echo json_encode(['code' => 200, 'message' => $msg, "success" => $success, 'config' => $config]);
