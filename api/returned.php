@@ -54,7 +54,7 @@ if($v->passes()) {
     $sql = 'insert into tracking   
     (order_status_id,note,order_id,staff_id) values(?,?,?,?)';
     $result = setData($con,$sql,['9',$note,$order_id,$userid]);
-    $sql = "select staff.token as s_token, orders.id as id , clients.sync_dns as dns, clients.sync_token as token, orders.isfrom as isfrom, clients.token as c_token from orders inner join staff
+    $sql = "select orders.order_no,staff.token as s_token, orders.id as id , clients.sync_dns as dns, clients.sync_token as token, orders.isfrom as isfrom, clients.token as c_token from orders inner join staff
             on
             staff.id = orders.manager_id
             or
@@ -72,7 +72,7 @@ if($v->passes()) {
          'id'=>$order_id,
         ]);
     }
-    sendNotification([$res[0]['s_token'],$res[0]['c_token']],[$order_id],'طلب رقم',"ارجاع الطلب - ".$note,"../orderDetails.php?o=".$order_id);
+    sendNotification([$res[0]['s_token'],$res[0]['c_token']],[$order_id],'طلب رقم' - $res[0]['order_no'],"ارجاع الطلب - ".$note,"../orderDetails.php?o=".$order_id);
    }else{
      $error['note'] = "لايمكن تحديث الحالة";
    }
@@ -90,4 +90,3 @@ if($v->passes()) {
   $msg ="Request Error";
 }
 echo json_encode(['code'=>200,'message'=>$msg,'sync'=>json_decode(substr($response, 3)),'success'=>$success, 'error'=>$error,$_POST]);
-?>
