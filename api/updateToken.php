@@ -1,5 +1,5 @@
 <?php
-ob_start(); 
+ob_start();
 session_start();
 header("Access-Control-Allow-Origin: *");
 header('Content-Type: application/json');
@@ -10,6 +10,7 @@ require_once("../php/dbconnection.php");
 require_once("../php/_crpt.php");
 
 use Violin\Violin;
+
 require_once('../validator/autoload.php');
 $v = new Violin;
 $success = 0;
@@ -23,30 +24,29 @@ $v->addRuleMessage('isPhoneNumber', ' رقم هاتف غير صحيح  ');
 
 
 $v->validate([
-    'id'      => [$id,      'required|int'],
-    'token'    => [$token,    'required|min(3)|max(200)'],
+  'id'      => [$id,      'required|int'],
+  'token'    => [$token,    'required|min(3)|max(200)'],
 ]);
 
-if($v->passes()) {
-try{
-   $sql = 'update clients set token = ? where id=?';
-   $result = setData($con,$sql,[$token,$id]);
+if ($v->passes()) {
+  try {
+    $sql = 'update staff set token = ? where id=?';
+    $result = setData($con, $sql, [$token, $id]);
 
-  if($result > 0){
-    $success = 1;
+    if ($result > 0) {
+      $success = 1;
+    }
+  } catch (PDOException $ex) {
+    $data = ["error" => $ex];
+    $success = "0";
+    $msg = "Query Error";
   }
-}catch(PDOException $ex) {
-   $data=["error"=>$ex];
-   $success="0";
-   $msg ="Query Error";
-
-}
-}else{
+} else {
   $error = [
-           'id'=> implode($v->errors()->get('id')),
-           'notify_token'=> implode($v->errors()->get('token')),
-           ];
-  $msg ="Request Error";
+    'id' => implode($v->errors()->get('id')),
+    'notify_token' => implode($v->errors()->get('token')),
+  ];
+  $msg = "Request Error";
 }
 ob_end_clean();
-echo json_encode([$sql,'code'=>200,'message'=>$msg,'success'=>$success, 'error'=>$error],JSON_PRETTY_PRINT);
+echo json_encode(['code' => 200, 'message' => $msg, 'success' => $success, 'error' => $error], JSON_PRETTY_PRINT);
