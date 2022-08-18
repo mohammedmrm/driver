@@ -49,5 +49,4 @@ try{
   $msg ="Request Error";
 }
 ob_end_clean();
-echo json_encode(['code'=>200,'message'=>$msg,'success'=>$success, 'error'=>$error],JSON_PRETTY_PRINT);
-?>
+echo json_encode([$sql,'code'=>200,'message'=>$msg,'success'=>$success, 'error'=>$error],JSON_PRETTY_PRINT);
