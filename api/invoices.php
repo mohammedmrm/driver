@@ -51,26 +51,24 @@ $sql = "select
           sum(new_price) as income,
 
           sum(
-                 if(order_status_id = 9,
-                     0,
-                     if(to_city = 1,
-                           if(client_dev_price.price is null,(".$config['dev_b']." - discount),(client_dev_price.price - discount)),
-                           if(client_dev_price.price is null,(".$config['dev_o']." - discount),(client_dev_price.price - discount))
+              new_price -
+              (if(to_city = 1,
+                  if(orders.order_status_id=9,0,
+                      if(towns.center = 1,
+                        if(client_dev_price.price is null,(" . $config['dev_b'] . " - discount),(client_dev_price.price - discount)),
+                        if(client_dev_price.town_price is null,(" . ($config['dev_b'] + $config['countrysidePrice']) . " - discount),(client_dev_price.town_price - discount))
+                      )
+                  ),
+                  if(orders.order_status_id=9,0,
+                      if(towns.center = 1,
+                        if(client_dev_price.price is null,(" . $config['dev_o'] . " - discount),(client_dev_price.price - discount)),
+                        if(client_dev_price.town_price is null,(" . ($config['dev_o'] + $config['countrysidePrice']) . " - discount),(client_dev_price.town_price - discount))
                       )
                   )
-          ) as dev,
-
-          sum(new_price -
-              (
-                 if(order_status_id = 6 or order_status_id = 5 or order_status_id = 4,
-                     if(to_city = 1,
-                           if(client_dev_price.price is null,(".$config['dev_b']." - discount),(client_dev_price.price - discount)),
-                           if(client_dev_price.price is null,(".$config['dev_o']." - discount),(client_dev_price.price - discount))
-                      ),
-                      0
-                  )
-              )
-          ) as client_price,
+                 )
+                 + if(new_price > 500000 ,( (ceil(new_price/500000)-1) * " . $config['addOnOver500'] . " ),0)
+                 + if(weight > 1 ,( (weight-1) * " . $config['weightPrice'] . " ),0)
+             )) as client_price,
           sum(discount) as discount,
           count(orders.id) as orders
           from orders
@@ -96,4 +94,3 @@ $total['start'] = date('Y-m-d', strtotime($start));
 $total['end'] = date('Y-m-d', strtotime($end." -1 day"));
 ob_end_clean();
 echo json_encode(['code'=>$code,'message'=>$msg,'success'=>$success,'data'=>$data,"total"=>$total]);
-?>
