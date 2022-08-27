@@ -28,9 +28,7 @@ $v->addRule('isPrice', function($value, $input, $args) {
   $x=(bool) 0;
   if(preg_match("/^(0|\-\d*|\d*)(\.\d{2})?$/",$value)){
     if($value != 0){
-     if(preg_match("/(000|500|250|750)$/",$value)){
       $x=(bool) 1;
-     }
    }else{
     $x=(bool) 1;
    }
@@ -118,4 +116,3 @@ if($v->passes()) {
   $msg ="Request Error";
 }
 echo json_encode(['code'=>200,'message'=>$msg,'sync'=>json_decode(substr($response, 3)),'success'=>$success, 'error'=>$error,$_POST]);
-?>
