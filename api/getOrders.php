@@ -64,7 +64,6 @@ try {
               and (orders.order_status_id=9 or orders.order_status_id=6 or orders.order_status_id=5)
              ";
   } else if ($status == "posponded") {
-
     $filter = "orders.driver_id =" . $userid . " and order_status_id=7  and (orders.confirm=1)";
   } else {
     $filter = "orders.driver_id ='" . $userid . "'  and (orders.confirm=1 or orders.confirm=4) and (
@@ -132,4 +131,4 @@ if ($success == '1') {
 }
 $code = 200;
 ob_end_clean();
-echo (json_encode(array('code' => $code, 'message' => $msg, 'orders' => $orders, "success" => $success, "data" => $data, 'pages' => $pages, 'nextPage' => $page + 2), JSON_PRETTY_PRINT));
+echo (json_encode(array($_REQUEST, $query, 'code' => $code, 'message' => $msg, 'orders' => $orders, "success" => $success, "data" => $data, 'pages' => $pages, 'nextPage' => $page + 2), JSON_PRETTY_PRINT));
