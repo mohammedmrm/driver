@@ -77,7 +77,7 @@ try {
           where driver_id = ?  and driver_invoice_id = 0 and (order_status_id = 4 or order_status_id = 5 or order_status_id = 6)  and confirm=1
           ";
   if (!empty($end) && !empty($start)) {
-    $sql .= ' and orders.date between "' . $start . '" and "' . $end . '" ';
+    $sql .= ' and date between "' . $start . '" and "' . $end . '" ';
   }
   if ($store > 0) {
     $sql .= ' and orders.store_id="' . $store . '"';
