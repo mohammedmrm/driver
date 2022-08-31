@@ -72,7 +72,7 @@ try {
           sum(discount) as discount,
           count(*) as orders
           from orders
-          letf join towns on towns.id = orders.to_town
+          letf join towns on towns.id = to_town
           left JOIN client_dev_price on client_dev_price.client_id = orders.client_id AND client_dev_price.city_id = orders.to_city
           where driver_id = ?  and driver_invoice_id = 0 and (order_status_id = 4 or order_status_id = 5 or order_status_id = 6)  and confirm=1
           ";
