@@ -93,4 +93,4 @@ try {
 $total['start'] = date('Y-m-d', strtotime($start));
 $total['end'] = date('Y-m-d', strtotime($end . " -1 day"));
 ob_end_clean();
-echo json_encode([$sql, 'code' => $code, 'message' => $msg, 'success' => $success, 'data' => $data, "total" => $total]);
+echo json_encode([$userid, $sql, 'code' => $code, 'message' => $msg, 'success' => $success, 'data' => $data, "total" => $total]);
