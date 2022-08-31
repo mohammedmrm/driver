@@ -53,13 +53,13 @@ try {
           sum(
               new_price -
               (if(to_city = 1,
-                  if(orders.order_status_id=9,0,
+                  if(order_status_id=9,0,
                       if(towns.center = 1,
                         if(client_dev_price.price is null,(" . $config['dev_b'] . " - discount),(client_dev_price.price - discount)),
                         if(client_dev_price.town_price is null,(" . ($config['dev_b'] + $config['countrysidePrice']) . " - discount),(client_dev_price.town_price - discount))
                       )
                   ),
-                  if(orders.order_status_id=9,0,
+                  if(order_status_id=9,0,
                       if(towns.center = 1,
                         if(client_dev_price.price is null,(" . $config['dev_o'] . " - discount),(client_dev_price.price - discount)),
                         if(client_dev_price.town_price is null,(" . ($config['dev_o'] + $config['countrysidePrice']) . " - discount),(client_dev_price.town_price - discount))
