@@ -53,13 +53,13 @@ try {
           sum(
               new_price -
               (if(to_city = 1,
-                  if(order_status_id=9,0,
+                  if(orders.order_status_id=9,0,
                       if(towns.center = 1,
                         if(client_dev_price.price is null,(" . $config['dev_b'] . " - discount),(client_dev_price.price - discount)),
                         if(client_dev_price.town_price is null,(" . ($config['dev_b'] + $config['countrysidePrice']) . " - discount),(client_dev_price.town_price - discount))
                       )
                   ),
-                  if(order_status_id=9,0,
+                  if(orders.order_status_id=9,0,
                       if(towns.center = 1,
                         if(client_dev_price.price is null,(" . $config['dev_o'] . " - discount),(client_dev_price.price - discount)),
                         if(client_dev_price.town_price is null,(" . ($config['dev_o'] + $config['countrysidePrice']) . " - discount),(client_dev_price.town_price - discount))
@@ -70,14 +70,13 @@ try {
                  + if(weight > 1 ,( (weight-1) * " . $config['weightPrice'] . " ),0)
              )) as client_price,
           sum(discount) as discount,
-          count(*) as orders
+          count(orders.id) as orders
           from orders
-          letf join towns on towns.id = to_town
           left JOIN client_dev_price on client_dev_price.client_id = orders.client_id AND client_dev_price.city_id = orders.to_city
-          where driver_id = ?  and driver_invoice_id = 0 and (order_status_id = 4 or order_status_id = 5 or order_status_id = 6)  and confirm=1
+          where orders.driver_id = ?  and driver_invoice_id = 0 and (order_status_id = 4 or order_status_id = 5 or order_status_id = 6)  and orders.confirm=1
           ";
   if (!empty($end) && !empty($start)) {
-    $sql .= ' and date between "' . $start . '" and "' . $end . '" ';
+    $sql .= ' and orders.date between "' . $start . '" and "' . $end . '" ';
   }
   if ($store > 0) {
     $sql .= ' and orders.store_id="' . $store . '"';
@@ -94,4 +93,4 @@ try {
 $total['start'] = date('Y-m-d', strtotime($start));
 $total['end'] = date('Y-m-d', strtotime($end . " -1 day"));
 ob_end_clean();
-echo json_encode(['code' => $code, 'message' => $msg, 'success' => $success, 'data' => $data, "total" => $total]);
+echo json_encode([$sql, 'code' => $code, 'message' => $msg, 'success' => $success, 'data' => $data, "total" => $total]);
