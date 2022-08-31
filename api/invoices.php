@@ -70,7 +70,7 @@ try {
                  + if(weight > 1 ,( (weight-1) * " . $config['weightPrice'] . " ),0)
              )) as client_price,
           sum(discount) as discount,
-          count(orders.id) as orders
+          count(*) as orders
           from orders
           letf join towns on towns.id = orders.to_town
           left JOIN client_dev_price on client_dev_price.client_id = orders.client_id AND client_dev_price.city_id = orders.to_city
