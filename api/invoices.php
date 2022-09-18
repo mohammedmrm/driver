@@ -103,7 +103,7 @@ try {
 }
 $total['start'] = date('Y-m-d', strtotime($start));
 $total['end'] = date('Y-m-d', strtotime($end . " -1 day"));
-$total['orders'] = $total['orders'] . " ( " . $total['recived'] * $db[0]['price'] . " ) ";
-$total['driverPrice'] = $db;
+$total['orders'] = $total['orders'] . " ( " . $total['recived'] * $dp[0]['price'] . " ) ";
+$total['driverPrice'] = $dp;
 ob_end_clean();
 echo json_encode([$userid, $sql, 'code' => $code, 'message' => $msg, 'success' => $success, 'data' => $data, "total" => $total]);
