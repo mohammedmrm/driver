@@ -25,9 +25,7 @@ $v->addRule('isPrice', function ($value, $input, $args) {
   $x = (bool) 0;
   if (preg_match("/^(0|\d*)(\.\d{2})?$/", $value)) {
     if ($value > 0) {
-      if (preg_match("/(000|500|250|750)$/", $value)) {
-        $x = (bool) 1;
-      }
+      $x = (bool) 1;
     } else {
       $x = (bool) 1;
     }
