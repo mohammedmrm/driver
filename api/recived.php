@@ -28,7 +28,7 @@ $v->addRuleMessage('isPrice', 'المبلغ غير صحيح');
 
 $v->addRule('isPrice', function ($value, $input, $args) {
   $x = (bool) 0;
-  if (preg_match("/^(0|\-\d*|\d*)(\.\d{2})?$/", $value)) {
+  if (preg_match("/^(0|\-\d*|\d*)(\.\d{2})?$/", $value) || $value == 0) {
     if ($value != 0) {
       $x = (bool) 1;
     } else {
