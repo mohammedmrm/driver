@@ -48,13 +48,7 @@ $v->validate([
   'note'       => [$note,     'min(1)|max(250)'],
   'order_id'   => [$order_id, "required|int"],
 ]);
-if ($new_price == 0) {
-  if (empty($note)) {
-    $note_err = "";
-  } else {
-    $note_err = implode($v->errors()->get('note'));
-  }
-}
+
 function httpPost($url, $data)
 {
   $curl = curl_init($url);
@@ -67,7 +61,7 @@ function httpPost($url, $data)
   return $response;
 }
 
-if ($v->passes() && empty($note_err)) {
+if ($v->passes()) {
   try {
     $sql = 'update orders set order_status_id =?,new_price=? where id=? and driver_id=? and driver_invoice_id=0 and storage_id=0 and invoice_id=0';
     $result = setData($con, $sql, ['4', $new_price, $order_id, $id]);
