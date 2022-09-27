@@ -31,7 +31,7 @@ $v->addRule('isPrice', function ($value, $input, $args) {
   if (preg_match("/^(0|\d*)(\.25|\.5|\.50|\.75)?$/", $value)) {
     $x = (bool) 1;
   }
-  return   $x;
+  return $x;
 });
 $v->addRuleMessages([
   'required' => 'الحقل مطلوب',
