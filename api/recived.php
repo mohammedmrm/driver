@@ -50,7 +50,7 @@ $v->validate([
 ]);
 if ($new_price == 0) {
   if (empty($note)) {
-    $note_err = "يجب ذكر ملاحظه";
+    $note_err = "";
   } else {
     $note_err = implode($v->errors()->get('note'));
   }
