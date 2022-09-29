@@ -25,7 +25,7 @@ $v->addRuleMessage('isPrice', 'المبلغ غير صحيح');
 
 $v->addRule('isPrice', function ($value, $input, $args) {
   $x = (bool) 0;
-  if (preg_match("/^(0|\d*)(\.25|\.5|\.50|\.75)?$/", $value)) {
+  if (preg_match("/^-?(0|\d*)(\.25|\.5|\.50|\.75)?$/", $value)) {
     $x = (bool) 1;
   }
   return   $x;
