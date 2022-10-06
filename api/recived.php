@@ -18,7 +18,7 @@ $success = 0;
 $error = [];
 $id        = $userid;
 $new_price = str_replace(',', '', $_REQUEST['price']);
-$new_price = str_replace('.', '', $new_price);
+//$new_price = str_replace('.', '', $new_price);
 $note      = $_REQUEST['note'];
 $order_id  = $_REQUEST['orderid'];
 $msg = "";
@@ -28,14 +28,10 @@ $v->addRuleMessage('isPrice', 'المبلغ غير صحيح');
 
 $v->addRule('isPrice', function ($value, $input, $args) {
   $x = (bool) 0;
-  if (preg_match("/^(0|\-\d*|\d*)(\.\d{2})?$/", $value)) {
-    if ($value != 0) {
-      $x = (bool) 1;
-    } else {
-      $x = (bool) 1;
-    }
+  if (preg_match("/^-?(0|\d*)(\.25|\.5|\.50|\.75)?$/", $value)) {
+    $x = (bool) 1;
   }
-  return   $x;
+  return $x;
 });
 $v->addRuleMessages([
   'required' => 'الحقل مطلوب',
@@ -52,13 +48,7 @@ $v->validate([
   'note'       => [$note,     'min(1)|max(250)'],
   'order_id'   => [$order_id, "required|int"],
 ]);
-if ($new_price == 0) {
-  if (empty($note)) {
-    $note_err = "يجب ذكر ملاحظه";
-  } else {
-    $note_err = implode($v->errors()->get('note'));
-  }
-}
+
 function httpPost($url, $data)
 {
   $curl = curl_init($url);
@@ -71,7 +61,7 @@ function httpPost($url, $data)
   return $response;
 }
 
-if ($v->passes() && empty($note_err)) {
+if ($v->passes()) {
   try {
     $sql = 'update orders set order_status_id =?,new_price=? where id=? and driver_id=? and driver_invoice_id=0 and storage_id=0 and invoice_id=0';
     $result = setData($con, $sql, ['4', $new_price, $order_id, $id]);
