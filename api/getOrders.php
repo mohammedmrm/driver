@@ -59,11 +59,7 @@ try {
   } else if ($status == "returned") {
     $filter = "orders.driver_invoice_id= 0 and orders.driver_id =" . $userid . " and (orders.order_status_id=9 or orders.order_status_id=6 or orders.order_status_id=5)  and (orders.confirm=1 or orders.confirm=4) and orders.storage_id <> 1 and orders.storage_id <> -1";
   } else if ($status == "recived") {
-<<<<<<< HEAD
-    $filter = "orders.driver_invoice_id = 0 and orders.driver_id =" . $userid . " and (order_status_id=4 or order_status_id=6 or order_status_id=5)  and (orders.confirm=1 or orders.confirm=4)";
-=======
     $filter = "orders.driver_invoice_id = 0 and orders.driver_id =" . $userid . " and (order_status_id=4 or order_status_id=5 or order_status_id=6)  and (orders.confirm=1 or orders.confirm=4)";
->>>>>>> squr
   } else if ($status == "instorage") {
     $filter = "orders.driver_id =" . $userid . " and orders.confirm=1 and orders.storage_id = 1 and driver_invoice_id=0
               and (orders.order_status_id=9 or orders.order_status_id=6 or orders.order_status_id=5)
