@@ -43,7 +43,7 @@ function httpPost($url, $data)
 if($v->passes()) {
    $sql = 'select * from driver_towns where town_id=?';
    $driver = getData($con,$sql,[$town]);
-   $sql = 'update orders set order_status_id =? where id=? and driver_id=? and driver_invoice_id=0';
+   $sql = 'update orders set storage_id=0, order_status_id =? where id=? and driver_id=? and driver_invoice_id=0';
    $result = setData($con,$sql,['8',$order_id,$id]);
    if($result > 0){
     $success = 1;
@@ -85,4 +85,3 @@ if($v->passes()) {
            ];
 }
 echo json_encode([json_decode(substr($response, 3)),'success'=>$success, 'error'=>$error]);
-?>
