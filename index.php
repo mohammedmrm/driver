@@ -1,5 +1,5 @@
 <?php
-die('<h5>تم ايقاف العمل بالرابط يرجى استخدام التطبيق<br /><a title="رابط تطبيق الاندرويد" href="https://play.google.com/store/apps/details?id=com.alzaim.driver&amp;pli=1">رابط تطبيق الاندرويد</a><br /><a title="رابط تطبيق الايفون" href="https://apps.apple.com/app/id1640770198">رابط تطبيق الايفون</a></h5>');
+die('<h3>تم ايقاف العمل بالرابط يرجى استخدام التطبيق<br /><a title="رابط تطبيق الاندرويد" href="https://play.google.com/store/apps/details?id=com.alzaim.driver&amp;pli=1">رابط تطبيق الاندرويد</a><br /><a title="رابط تطبيق الايفون" href="https://apps.apple.com/app/id1640770198">رابط تطبيق الايفون</a></h3>');
 if (!isset($_SESSION)) {
   session_start();
 }
