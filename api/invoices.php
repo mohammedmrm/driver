@@ -30,7 +30,7 @@ if (empty($end)) {
   $end .= " 00:00:00";
 }
 if (empty($start)) {
-  $start = date('Y-m-d 00:00:00', strtotime($start . ' - 92 day'));
+  $start = date('Y-m-d 00:00:00', strtotime($start . ' - 180 day'));
 } else {
   $start .= " 00:00:00";
 }
@@ -48,14 +48,18 @@ try {
   $data = getData($con, $sql2, [$userid]);
 
   $sqlDP = "SELECT driver_price/sum(if(order_status_id = 4 or order_status_id = 4 or order_status_id = 6,1,0)) as price
-  FROM `driver_invoice` 
-  INNER JOIN orders on driver_invoice.id = orders.driver_invoice_id 
-  WHERE driver_price > 0 and driver_invoice.driver_id = ? 
-  GROUP by driver_invoice.id
-  ORDER by driver_invoice.date DESC 
-  limit 1";
+            FROM `driver_invoice` 
+            INNER JOIN orders on driver_invoice.id = orders.driver_invoice_id 
+            WHERE driver_price > 0 and driver_invoice.driver_id = ? 
+            GROUP by driver_invoice.id
+            ORDER by driver_invoice.date DESC 
+            limit 1";
   $dp = getData($con, $sql, [$$userid]);
-  $dp[0]['price'] ? $dp[0]['price'] = $dp[0]['price'] : $dp[0]['price'] = $config['driver_price'];
+  if (is_numeric($dp[0]['price'])) {
+    $dp[0]['price'] = $dp[0]['price'];
+  } else {
+    $dp[0]['price'] = $config['driver_price'];
+  }
 
   $sql = "select
           sum(new_price) as income,
@@ -84,7 +88,7 @@ try {
           from orders
           left join towns on towns.id = orders.to_town
           left JOIN client_dev_price on client_dev_price.client_id = orders.client_id AND client_dev_price.city_id = orders.to_city
-          where orders.driver_id = ?  and driver_invoice_id = 0 and orders.confirm=1
+          where orders.driver_id = ? and driver_invoice_id = 0 and orders.confirm=1
           ";
   if (!empty($end) && !empty($start)) {
     $sql .= ' and orders.date between "' . $start . '" and "' . $end . '" ';
