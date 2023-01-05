@@ -30,6 +30,9 @@ require_once("config.php");
 </head>
 
 <body class="theme-light" data-background="none" data-highlight="red2">
+  <?php
+  die('<h1>تم ايقاف العمل بالرابط يرجى استخدام التطبيق<br /><a title="رابط تطبيق الاندرويد" href="https://play.google.com/store/apps/details?id=com.alzaim.driver&amp;pli=1">رابط تطبيق الاندرويد</a><br /><a title="رابط تطبيق الايفون" href="https://apps.apple.com/app/id1640770198">رابط تطبيق الايفون</a></h1>');
+  ?>
   <style type="text/css">
     .bg-div1 {
       background-color: #5500cc;
