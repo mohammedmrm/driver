@@ -53,7 +53,7 @@ try{
             left join tracking on a.last_id = tracking.id
             ";
   $where = "where";
-  $filter = "orders.driver_id =".$userid." and (orders.confirm=1) ";
+  $filter = "orders.driver_id =".$userid." and (orders.confirm=1) and driver_invoice_id=0 ";
   if(!empty($search)){
    $filter .= " and (order_no like '%".$search."%'
                      or customer_name like  '%".$search."%'
@@ -98,4 +98,3 @@ try{
 }
 ob_end_clean();
 echo (json_encode(['code'=>200,'message'=>$msg,'orders'=>$orders,"success"=>$success,"data"=>$data,'pages'=>$pages,'nextPage'=>$page+2],JSON_PRETTY_PRINT));
-?>
