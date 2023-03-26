@@ -102,4 +102,4 @@ $total['end'] = date('Y-m-d', strtotime($end . " -1 day"));
 $total['orders'] = $total['orders'];
 $total['driver_price'] = $total['driver_price'];
 ob_end_clean();
-echo json_encode(['code' => $code, $sql, 'message' => $msg, 'success' => $success, 'data' => $data, "total" => $total]);
+echo json_encode(['code' => $code, 'message' => $msg, 'success' => $success, 'data' => $data, "total" => $total]);
