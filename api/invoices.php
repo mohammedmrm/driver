@@ -41,20 +41,8 @@ try {
   if (!empty($end) && !empty($start)) {
     $sql2 .= ' and driver_invoice.date between "' . $start . '" and "' . $end . '" ';
   }
-
   $sql2 .= " group by driver_invoice.id order by driver_invoice.date DESC";
-
   $data = getData($con, $sql2, [$userid]);
-
-  $sqlDP = "SELECT driver_price/sum(if(order_status_id = 4 or order_status_id = 4 or order_status_id = 6,1,0)) as price
-  FROM `driver_invoice` 
-  INNER JOIN orders on driver_invoice.id = orders.driver_invoice_id 
-  WHERE driver_price > 0 and driver_invoice.driver_id = ? 
-  GROUP by driver_invoice.id
-  ORDER by driver_invoice.date DESC 
-  limit 1";
-  $dp = getData($con, $sql, [$$userid]);
-  $dp[0]['price'] ? $dp[0]['price'] = $dp[0]['price'] : $dp[0]['price'] = $config['driver_price'];
 
   $sql = "select
           sum(new_price) as income,
@@ -114,4 +102,4 @@ $total['end'] = date('Y-m-d', strtotime($end . " -1 day"));
 $total['orders'] = $total['orders'];
 $total['driver_price'] = $total['driver_price'];
 ob_end_clean();
-echo json_encode(['code' => $code, 'message' => $msg, 'success' => $success, 'data' => $data, "total" => $total]);
+echo json_encode(['code' => $code, $sql, 'message' => $msg, 'success' => $success, 'data' => $data, "total" => $total]);
