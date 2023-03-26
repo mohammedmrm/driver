@@ -37,7 +37,7 @@ try {
   if (!empty($end) && !empty($start)) {
     $sql2 .= ' and driver_invoice.date between "' . $start . '" and "' . $end . '" ';
   }
-  $sql2 .= " group by driver_invoice.id order by driver_invoice.date DESC";
+  $sql2 .= " group by driver_invoice.id order by driver_invoice.date DESC limit 25";
   $data = getData($con, $sql2, [$userid]);
 
   $sql = "select
