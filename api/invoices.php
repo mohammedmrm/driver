@@ -67,11 +67,11 @@ try {
              )) as client_price,
           sum(discount) as discount,
           SUM(IF (order_status_id = '4' or order_status_id = '5' or order_status_id = '6',1,0)) as  recived,
-          SUM (
+          SUM(
             if(orders.order_status_id=4 or order_status_id = 6 or order_status_id = 5,
                 if(towns.center=1 ,
                   if(center_price > 0, center_price,'" . $config['driver_price'] . "'),
-                  if(town_price > 0, town_price,'" . ($config['driver_price'] + $config['countrysidePrice']) . "')
+                  if(staff.town_price > 0, staff.town_price,'" . ($config['driver_price'] + $config['countrysidePrice']) . "')
                 ),
             0)
           ) as driver_price ,
