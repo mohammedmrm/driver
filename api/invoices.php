@@ -77,7 +77,7 @@ try {
           ) as driver_price ,
           count(orders.id) as orders
           from orders
-          left join staff on orders.driver_id = staff.order_id
+          left join staff on orders.driver_id = staff.id
           left join towns on towns.id = orders.to_town
           left JOIN client_dev_price on client_dev_price.client_id = orders.client_id AND client_dev_price.city_id = orders.to_city
           where orders.driver_id = ?  and driver_invoice_id = 0 and orders.confirm=1
