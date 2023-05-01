@@ -1,7 +1,6 @@
 <?php
 ob_start();
 session_start();
-//header("Access-Control-Allow-Origin: *");
 header('Content-Type: application/json');
 require_once("_apiAccess.php");
 access();
@@ -23,15 +22,11 @@ if (empty($page)) {
 }
 $success = 0;
 
-if (empty($end)) {
-  $end = date('Y-m-d 00:00:00', strtotime($end . ' + 1 day'));
-} else {
+if (!empty($end)) {
   $end = date('Y-m-d', strtotime($end . ' + 1 day'));
   $end .= " 00:00:00";
 }
-if (empty($start)) {
-  $start = date('Y-m-d 00:00:00', strtotime($start . ' - 180 day'));
-} else {
+if (!empty($start)) {
   $start .= " 00:00:00";
 }
 try {
@@ -42,24 +37,8 @@ try {
   if (!empty($end) && !empty($start)) {
     $sql2 .= ' and driver_invoice.date between "' . $start . '" and "' . $end . '" ';
   }
-
-  $sql2 .= " group by driver_invoice.id order by driver_invoice.date DESC";
-
+  $sql2 .= " group by driver_invoice.id order by driver_invoice.date DESC limit 25";
   $data = getData($con, $sql2, [$userid]);
-
-  $sqlDP = "SELECT driver_price/sum(if(order_status_id = 4 or order_status_id = 4 or order_status_id = 6,1,0)) as price
-            FROM `driver_invoice` 
-            INNER JOIN orders on driver_invoice.id = orders.driver_invoice_id 
-            WHERE driver_price > 0 and driver_invoice.driver_id = ? 
-            GROUP by driver_invoice.id
-            ORDER by driver_invoice.date DESC 
-            limit 1";
-  $dp = getData($con, $sql, [$$userid]);
-  if (is_numeric($dp[0]['price'])) {
-    $dp[0]['price'] = $dp[0]['price'];
-  } else {
-    $dp[0]['price'] = $config['driver_price'];
-  }
 
   $sql = "select
           sum(new_price) as income,
@@ -84,8 +63,17 @@ try {
              )) as client_price,
           sum(discount) as discount,
           SUM(IF (order_status_id = '4' or order_status_id = '5' or order_status_id = '6',1,0)) as  recived,
+          SUM(
+            if(orders.order_status_id=4 or order_status_id = 6 or order_status_id = 5,
+                if(towns.center=1 ,
+                  if(center_price > 0, center_price,'" . $config['driver_price'] . "'),
+                  if(staff.town_price > 0, staff.town_price,'" . ($config['driver_price'] + $config['countrysidePrice']) . "')
+                ),
+            0)
+          ) as driver_price ,
           count(orders.id) as orders
           from orders
+          left join staff on orders.driver_id = staff.id
           left join towns on towns.id = orders.to_town
           left JOIN client_dev_price on client_dev_price.client_id = orders.client_id AND client_dev_price.city_id = orders.to_city
           where orders.driver_id = ? and driver_invoice_id = 0 and orders.confirm=1
@@ -108,6 +96,6 @@ try {
 $total['start'] = date('Y-m-d', strtotime($start));
 $total['end'] = date('Y-m-d', strtotime($end . " -1 day"));
 $total['orders'] = $total['orders'];
-$total['driver_price'] = $total['recived'] * $dp[0]['price'];
+$total['driver_price'] = $total['driver_price'];
 ob_end_clean();
 echo json_encode(['code' => $code, 'message' => $msg, 'success' => $success, 'data' => $data, "total" => $total]);

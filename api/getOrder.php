@@ -39,7 +39,7 @@ try{
   }else{
       $query = "select tracking.*,status,DATE_FORMAT(date,'%Y-%m-%d') as date,DATE_FORMAT(date,'%H:%i') as hour from tracking
       left join order_status on tracking.order_status_id = order_status.id
-      where order_id=".$id." order by tracking.id DESC";
+      where order_id=".$id. " and tracking.order_status_id <> -1 order by tracking.id DESC";
       $data[0]['tracking'] = getData($con,$query);
   }
   if(empty($data[0]['t_note'])){
