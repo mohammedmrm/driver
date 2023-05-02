@@ -51,7 +51,6 @@ try {
     $filter .= " and (order_no like '%" . $search . "%'
                      or customer_name like  '%" . $search . "%'
                      or customer_phone like '%" . $search . "%'
-                     or tracking.note like  '%" . $search . "%'
                      )
                     ";
   }
