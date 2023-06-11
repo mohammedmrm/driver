@@ -67,5 +67,5 @@ try {
     $success = "0";
     $msg = "Query Error";
 }
-ob_end_clean();
+//ob_end_clean();
 echo (json_encode(array('code' => 200, 'message' => $msg, "data" => $result, "today" => $res[0]['today'], 'waiting' => $res3[0]['waiting'], 'static' => $static), JSON_PRETTY_PRINT));
