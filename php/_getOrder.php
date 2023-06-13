@@ -6,22 +6,22 @@ access();
 require_once("dbconnection.php");
 require_once("../config.php");
 $id = $_REQUEST['id'];
-try{
-  $query = "select orders.*,
+try {
+   $query = "select orders.*,
            if(order_status_id = 9,
                0,
-               if(to_city = 1,
-                     if(client_dev_price.price is null,(".$config['dev_b']." - discount),(client_dev_price.price - discount)),
-                     if(client_dev_price.price is null,(".$config['dev_o']." - discount),(client_dev_price.price - discount))
-                )
-            )as dev_price,
+               if(towns.center = 1, 
+                  if(staff.center_price=0," . $config['driver_price'] . " ,staff.center_price ),
+                  if(staff.town_price=0," . $config['driver_price'] . " ,staff.town_price )
+               )
+            ) as dev_price,
             new_price -
               (
                  if(order_status_id = 9,
                      0,
                      if(to_city = 1,
-                           if(client_dev_price.price is null,(".$config['dev_b']." - discount),(client_dev_price.price - discount)),
-                           if(client_dev_price.price is null,(".$config['dev_o']." - discount),(client_dev_price.price - discount))
+                           if(client_dev_price.price is null,(" . $config['dev_b'] . " - discount),(client_dev_price.price - discount)),
+                           if(client_dev_price.price is null,(" . $config['dev_o'] . " - discount),(client_dev_price.price - discount))
                       )
                   )
                ) as client_price,
@@ -43,11 +43,10 @@ try{
             where orders.id = ? and orders.driver_id =?";
 
 
-  $data = getData($con,$query,[$id,$_SESSION['userid']]);
-  $success="1";
-} catch(PDOException $ex) {
-   $data=["error"=>$ex];
-   $success="0";
+   $data = getData($con, $query, [$id, $_SESSION['userid']]);
+   $success = "1";
+} catch (PDOException $ex) {
+   $data = ["error" => $ex];
+   $success = "0";
 }
-echo json_encode(array("success"=>$success,"data"=>$data));
-?>
+echo json_encode(array("success" => $success, "data" => $data));
