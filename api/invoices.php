@@ -15,7 +15,7 @@ $page = trim($_REQUEST['currentPage']);
 $store = trim($_REQUEST['store']);
 $msg = "";
 if (empty($limit)) {
-  $limit = 10;
+  $limit = 30;
 }
 if (empty($page)) {
   $page = 1;
