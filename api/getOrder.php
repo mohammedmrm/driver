@@ -1,7 +1,7 @@
 <?php
 ob_start();
 session_start();
-header("Access-Control-Allow-Origin: *");
+//header("Access-Control-Allow-Origin: *");
 header('Content-Type: application/json');
 require_once("_apiAccess.php");
 access();
@@ -10,15 +10,15 @@ require_once("../php/dbconnection.php");
 require_once("../config.php");
 $id = $_REQUEST['orderid'];
 $Nid = $_REQUEST['notification_id'];
-$msg="";
-if($id > 0){
-try{
-  $query = "select orders.*,
+$msg = "";
+if ($id > 0) {
+  try {
+    $query = "select orders.*,
            if(order_status_id = 9,
                0,
                if(to_city = 1,
-                     if(client_dev_price.price is null,(".$config['dev_b']." - discount),(client_dev_price.price - discount)),
-                     if(client_dev_price.price is null,(".$config['dev_o']." - discount),(client_dev_price.price - discount))
+                     if(client_dev_price.price is null,(" . $config['dev_b'] . " - discount),(client_dev_price.price - discount)),
+                     if(client_dev_price.price is null,(" . $config['dev_o'] . " - discount),(client_dev_price.price - discount))
                 )
             )as dev_price,
             new_price -
@@ -26,8 +26,8 @@ try{
                  if(order_status_id = 9,
                      0,
                      if(to_city = 1,
-                           if(client_dev_price.price is null,(".$config['dev_b']." - discount),(client_dev_price.price - discount)),
-                           if(client_dev_price.price is null,(".$config['dev_o']." - discount),(client_dev_price.price - discount))
+                           if(client_dev_price.price is null,(" . $config['dev_b'] . " - discount),(client_dev_price.price - discount)),
+                           if(client_dev_price.price is null,(" . $config['dev_o'] . " - discount),(client_dev_price.price - discount))
                       )
                   )
                ) as client_price,
@@ -47,48 +47,47 @@ try{
             left JOIN client_dev_price on client_dev_price.client_id = orders.client_id AND client_dev_price.city_id = orders.to_city
             left JOIN staff on staff.id = orders.driver_id
             where orders.id = ? and orders.confirm <> 0 and orders.driver_id =?";
-  $data = getData($con,$query,[$id,$userid]);
-  $success="1";
-  if(count($data) > 1){
-     $success="2";
-  }else{
+    $data = getData($con, $query, [$id, $userid]);
+    $success = "1";
+    if (count($data) > 1) {
+      $success = "2";
+    } else {
       $query = "select tracking.*,status,DATE_FORMAT(date,'%Y-%m-%d') as date,DATE_FORMAT(date,'%H:%i') as hour from tracking
       left join order_status on tracking.order_status_id = order_status.id
-      where order_id=".$id. " and tracking.order_status_id <> -1 order by tracking.id DESC";
-      $data[0]['tracking'] = getData($con,$query);
+      where order_id=" . $id . " and tracking.order_status_id <> -1 order by tracking.id DESC";
+      $data[0]['tracking'] = getData($con, $query);
+    }
+    if (empty($data[0]['t_note'])) {
+      $data[0]['t_note'] = "";
+    }
+    if (empty($data[0]['remote_client_phone'])) {
+      $data[0]['remote_client_phone'] = "";
+    }
+    if (empty($data[0]['remote_driver_phone'])) {
+      $data[0]['remote_driver_phone'] = "";
+    }
+    if (empty($data[0]['customer_name']) || $data[0]['customer_name'] == "") {
+      $data[0]['customer_name'] = "NA";
+    }
+    if (empty($data[0]['qty'])) {
+      $data[0]['qty'] = 1;
+    }
+    if (empty($data[0]['bar_code'])) {
+      $data[0]['bar_code'] = 0;
+    }
+    if ($Nid > 0) {
+      $sql = "update notification set client_seen = 1 where id=? and order_id=?";
+      setData($con, $sql, [$Nid, $id]);
+    }
+  } catch (PDOException $ex) {
+    $data = ["error" => $ex];
+    $success = "0";
+    $msg = "Query Error";
   }
-  if(empty($data[0]['t_note'])){
-    $data[0]['t_note'] = "";
-  }
-  if(empty($data[0]['remote_client_phone'])){
-    $data[0]['remote_client_phone'] = "";
-  }
-  if(empty($data[0]['remote_driver_phone'])){
-    $data[0]['remote_driver_phone'] = "";
-  }
-  if(empty($data[0]['customer_name']) || $data[0]['customer_name'] == ""){
-    $data[0]['customer_name'] = "NA";
-  }
-  if(empty($data[0]['qty'])){
-    $data[0]['qty'] = 1;
-  }
-  if(empty($data[0]['bar_code'])){
-    $data[0]['bar_code'] = 0;
-  }
-  if($Nid > 0){
-    $sql = "update notification set client_seen = 1 where id=? and order_id=?";
-    setData($con,$sql,[$Nid,$id]);
-  }
-} catch(PDOException $ex) {
-   $data=["error"=>$ex];
-   $success="0";
-   $msg ="Query Error";
-
-}
-}else{
-   $data="orderid is required";
-   $success="0";
-   $msg ="Query Error";
+} else {
+  $data = "orderid is required";
+  $success = "0";
+  $msg = "Query Error";
 }
 ob_end_clean();
-echo json_encode(array('code'=>200,'message'=>$msg,"success"=>$success,"data"=>$data),JSON_PRETTY_PRINT);
+echo json_encode(array('code' => 200, 'message' => $msg, "success" => $success, "data" => $data), JSON_PRETTY_PRINT);

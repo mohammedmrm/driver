@@ -1,7 +1,7 @@
 <?php
 ob_start();
 session_start();
-header("Access-Control-Allow-Origin: *");
+//header("Access-Control-Allow-Origin: *");
 header('Content-type:application/json');
 error_reporting(0);
 session_start();
