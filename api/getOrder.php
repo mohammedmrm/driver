@@ -14,13 +14,7 @@ $msg = "";
 if ($id > 0) {
   try {
     $query = "select orders.*,
-           if(order_status_id = 9,
-               0,
-               if(to_city = 1,
-                     if(client_dev_price.price is null,(" . $config['dev_b'] . " - discount),(client_dev_price.price - discount)),
-                     if(client_dev_price.price is null,(" . $config['dev_o'] . " - discount),(client_dev_price.price - discount))
-                )
-            )as dev_price,
+           'N/A' as dev_price,
             new_price -
               (
                  if(order_status_id = 9,
