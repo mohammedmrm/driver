@@ -14,17 +14,8 @@ $msg = "";
 if ($id > 0) {
   try {
     $query = "select orders.*,
-           'N/A' as dev_price,
-            new_price -
-              (
-                 if(order_status_id = 9,
-                     0,
-                     if(to_city = 1,
-                           if(client_dev_price.price is null,(" . $config['dev_b'] . " - discount),(client_dev_price.price - discount)),
-                           if(client_dev_price.price is null,(" . $config['dev_o'] . " - discount),(client_dev_price.price - discount))
-                      )
-                  )
-               ) as client_price,
+            'N/A' as dev_price,
+            'N/A' as client_price,
             clients.name as client_name,
             if(orders.bar_code > 0 and orders.remote_client_phone is not null,remote_client_phone,clients.phone) as client_phone,
             cites.name as city,towns.name as town,branches.name as branch_name,
