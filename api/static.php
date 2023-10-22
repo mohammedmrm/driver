@@ -38,12 +38,12 @@ try {
     $result[0]['waiting'] = $res3[0]['waiting'];
     $sql = "SELECT
           SUM(IF (order_status_id = '1' or order_status_id = '2' or order_status_id = '3' or order_status_id = '13',1,0)) as  onway,
-          SUM(IF (order_status_id = '9' and storage_id<>1 and orders.storage_id <> -1,1,0)) as  inprocess,
-          SUM(IF (order_status_id = '6' and storage_id<>1 and orders.storage_id <> -1,1,0)) as  partiallyReturnd,
-          SUM(IF (order_status_id = '5' and storage_id<>1 and orders.storage_id <> -1,1,0)) as  `replace`,
-          SUM(IF ((order_status_id = '9') and storage_id=1,1,0)) as  instorageReturnd,
-          SUM(IF ((order_status_id = '6') and storage_id=1,1,0)) as  instoragepartiallyReturnd,
-          SUM(IF ((order_status_id = '5') and storage_id=1,1,0)) as  instoragereplace,
+          SUM(IF (order_status_id = '9' and storage_id<>1 and  storage_id<>24 and orders.storage_id <> -1,1,0)) as  inprocess,
+          SUM(IF (order_status_id = '6' and storage_id<>1 and  storage_id<>24 and orders.storage_id <> -1,1,0)) as  partiallyReturnd,
+          SUM(IF (order_status_id = '5' and storage_id<>1 and  storage_id<>24 and orders.storage_id <> -1,1,0)) as  `replace`,
+          SUM(IF ((order_status_id = '9') and (storage_id=1 || storage_id=24),1,0)) as  instorageReturnd,
+          SUM(IF ((order_status_id = '6') and (storage_id=1 || storage_id=24),1,0)) as  instoragepartiallyReturnd,
+          SUM(IF ((order_status_id = '5') and (storage_id=1 || storage_id=24),1,0)) as  instoragereplace,
           SUM(IF (order_status_id = '4',1,0)) as  recieved,
           SUM(IF (order_status_id = '7',1,0)) as  posponded,
           sum(new_price) as total,
@@ -61,7 +61,7 @@ try {
           FROM orders
           left JOIN client_dev_price on client_dev_price.client_id = orders.client_id AND client_dev_price.city_id = orders.to_city
           where orders.driver_id=" . $userid . " and driver_invoice_id=0 and confirm=1";
-    $static =  getData($con, $sql);
+    $static = getData($con, $sql);
 } catch (PDOException $ex) {
     $data = ["error" => $ex];
     $success = "0";
