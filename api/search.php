@@ -31,10 +31,11 @@ $start .= " 00:00:00";
 try {
   $count = "select count(*) as count from orders
             ";
+  //FIXME: client_phone is actually the driver phone temp fix for the app
   $query = "select orders.*,
-            clients.name as client_name,clients.phone as client_phone,
+            clients.name as client_name,clients.phone as client_phone2,
             cites.name as city,towns.name as town,branches.name as branch_name,
-            if(staff.phone is null,'07721397505',staff.phone) as driver_phone,
+            if(staff.phone is null,'07721397505',staff.phone) as client_phone, 
             stores.name as store_name,' ' as t_note ,order_status.status as status_name
             from orders left join
             clients on clients.id = orders.client_id
