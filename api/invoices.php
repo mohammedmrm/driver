@@ -43,9 +43,9 @@ try {
 
   $sql = "select
           sum(   if(orders.order_status_id=4 or order_status_id = 6 or order_status_id = 5,
-                    if(towns.center=1,
-                        if(driver.center_price is null or driver.center_price =0, '" . $config['driver_price'] . "', driver.center_price) ,
-                        if(driver.town_price is null or driver.town_price =0, '" . $config['driver_price'] . "', driver.town_price)                         
+                      if(towns.center=1,
+                        if(staff.center_price is null or staff.center_price =0, '" . $config['driver_price'] . "', staff.center_price) ,
+                        if(staff.town_price is null or staff.town_price =0, '" . $config['driver_price'] . "', staff.town_price)                         
                      ),
                 0)) as income,
           sum(
