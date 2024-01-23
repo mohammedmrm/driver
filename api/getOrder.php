@@ -43,13 +43,13 @@ if ($id) {
       $data[0]['tracking'] = getData($con, $query);
     }
     if (empty($data[0]['t_note'])) {
-      $data[0]['t_note'] = null;
+      $data[0]['t_note'] = "";
     }
     if (empty($data[0]['remote_client_phone'])) {
-      $data[0]['remote_client_phone'] = null;
+      $data[0]['remote_client_phone'] = "";
     }
     if (empty($data[0]['remote_driver_phone'])) {
-      $data[0]['remote_driver_phone'] = null;
+      $data[0]['remote_driver_phone'] = "";
     }
     if (empty($data[0]['customer_name']) || $data[0]['customer_name'] == "") {
       $data[0]['customer_name'] = "NA";
@@ -75,4 +75,4 @@ if ($id) {
   $msg = "Query Error";
 }
 ob_end_clean();
-echo json_encode(array('code' => 200, 'message' => $msg, "success" => $success, "data" => $data, $id, $userid));
+echo json_encode(array('code' => 200, 'message' => $msg, "success" => $success, "data" => $data, "userrid" => $userid));
