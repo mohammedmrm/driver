@@ -75,4 +75,4 @@ if ($id) {
   $msg = "Query Error";
 }
 ob_end_clean();
-echo json_encode(array('code' => 200, 'message' => $msg, "success" => $success, "data" => $data));
+echo json_encode(array('code' => 200, 'message' => $msg, "success" => $success, "data" => $data, $id, $userid));
