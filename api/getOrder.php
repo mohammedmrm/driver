@@ -10,12 +10,12 @@ require_once("../php/dbconnection.php");
 require_once("../config.php");
 $id = $_REQUEST['orderid'];
 $Nid = $_REQUEST['notification_id'];
-$msg = "";
+$msg = " ";
 if ($id) {
   try {
     $query = "select orders.*,
-            '0' as dev_price,
-            '0' as client_price,
+            'N/A' as dev_price,
+            'N/A' as client_price,
             clients.name as client_name,
             if(orders.bar_code > 0 and orders.remote_client_phone is not null,remote_client_phone,clients.phone) as client_phone,
             cites.name as city,towns.name as town,branches.name as branch_name,
@@ -43,13 +43,13 @@ if ($id) {
       $data[0]['tracking'] = getData($con, $query);
     }
     if (empty($data[0]['t_note'])) {
-      $data[0]['t_note'] = "";
+      $data[0]['t_note'] = " ";
     }
     if (empty($data[0]['remote_client_phone'])) {
-      $data[0]['remote_client_phone'] = "";
+      $data[0]['remote_client_phone'] = " ";
     }
     if (empty($data[0]['remote_driver_phone'])) {
-      $data[0]['remote_driver_phone'] = "";
+      $data[0]['remote_driver_phone'] = "" ;
     }
     if (empty($data[0]['customer_name']) || $data[0]['customer_name'] == "") {
       $data[0]['customer_name'] = "NA";
