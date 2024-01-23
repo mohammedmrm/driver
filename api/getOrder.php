@@ -11,11 +11,11 @@ require_once("../config.php");
 $id = $_REQUEST['orderid'];
 $Nid = $_REQUEST['notification_id'];
 $msg = "";
-if ($id > 0) {
+if ($id) {
   try {
     $query = "select orders.*,
-            'N/A' as dev_price,
-            'N/A' as client_price,
+            '0' as dev_price,
+            '0' as client_price,
             clients.name as client_name,
             if(orders.bar_code > 0 and orders.remote_client_phone is not null,remote_client_phone,clients.phone) as client_phone,
             cites.name as city,towns.name as town,branches.name as branch_name,
@@ -75,4 +75,4 @@ if ($id > 0) {
   $msg = "Query Error";
 }
 ob_end_clean();
-echo json_encode(array('code' => 200, 'message' => $msg, "success" => $success, "data" => $data), JSON_PRETTY_PRINT);
+echo json_encode(array('code' => 200, 'message' => $msg, "success" => $success, "data" => $data));
