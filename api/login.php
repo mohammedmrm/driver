@@ -1,5 +1,4 @@
 <?php
-
 session_start();
 header('Content-type:application/json');
 error_reporting(0);
