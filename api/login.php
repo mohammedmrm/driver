@@ -1,8 +1,7 @@
 <?php
-ob_start();
-session_start();
 header("Access-Control-Allow-Origin: *");
 header('Content-type:application/json');
+ob_start();
 error_reporting(0);
 session_start();
 $username = $_REQUEST['username'];
