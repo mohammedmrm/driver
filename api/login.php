@@ -1,9 +1,10 @@
 <?php
-ob_start();
+
 session_start();
 header('Content-type:application/json');
 error_reporting(0);
 session_start();
+ob_start();
 $username = $_REQUEST['username'];
 $password = $_REQUEST['password'];
 //die(json_encode(['message'=>"Access Deny"])); 
