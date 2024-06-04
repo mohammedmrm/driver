@@ -29,6 +29,7 @@ if (!empty($token)) {
       $msg = 1;
       $code = 200;
       $userid = $loginres[0]['id'];
+      $_SESSION['userid']=$loginres[0]['id'];
       $head_company_id = $loginres[0]['company_id'];
       $showearnings =  1;
       $userrole = 4;
