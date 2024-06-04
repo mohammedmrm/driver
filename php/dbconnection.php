@@ -21,7 +21,7 @@ function setData($db, $query, $parm = [])
   $stmt = $db->prepare($query);
   $stmt->execute($parm);
   $count = $stmt->rowCount();
-  $log = $db->prepare("insert into logs (type,staff_id,query,rowCount,parms) values(?,?,?,?)");
+  $log = $db->prepare("insert into logs (type,staff_id,query,rowCount,parms) values(?,?,?,?,?)");
   $log->execute(['driver',$userid, $query, $count, json_encode($parm)]);
   return $count;
 }
