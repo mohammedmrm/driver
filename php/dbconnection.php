@@ -14,10 +14,14 @@ function getData($db,$query,$parm = []) {
   $rows = $stmt->fetchAll(PDO::FETCH_ASSOC);
   return $rows;
 }
-function setData($db,$query,$parm = []) {
+function setData($db, $query, $parm = [])
+{
+  $userid = $_SESSION['userid'] ? $_SESSION['userid'] : -1;
   $stmt = $db->prepare($query);
   $stmt->execute($parm);
   $count = $stmt->rowCount();
+  $log = $db->prepare("insert into logs (staff_id,query,rowCount,parms) values(?,?,?,?)");
+  $log->execute([$userid, $query, $count, json_encode($parm)]);
   return $count;
 }
 
