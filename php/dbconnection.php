@@ -1,5 +1,4 @@
 ﻿<?php
-require_once("../api/_apiAcccess.php")
 try{
 
 $con = new PDO('mysql:host=localhost;dbname=nahar', "root",
@@ -17,7 +16,7 @@ function getData($db,$query,$parm = []) {
 }
 function setData($db, $query, $parm = [])
 {
-  $userid = $_SESSION['userid'] ? $_SESSION['userid'] : $userid ? $userid : -1;
+  $userid = $_SESSION['userid'] ? $_SESSION['userid'] : -1;
   $stmt = $db->prepare($query);
   $stmt->execute($parm);
   $count = $stmt->rowCount();
